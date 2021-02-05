@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [OLGA AVRAMENKO](https://up.htmlacademy.ru/react/6/user/89110).
-* Наставник: `Неизвестно`.
+* Наставник: `Виталий Яковенко`.
 
 ---
 
