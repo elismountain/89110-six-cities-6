@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from "../Header";
-// import Footer from "../Footer";
+import Header from "../header/header";
+import Footer from "../footer/footer";
 
 const Favorites = () => {
   return (
@@ -155,7 +155,8 @@ const Favorites = () => {
       </section>
     </div>
     </main>
-    // add Footer
+    < Footer />
+    </div>
   );
 };
 
