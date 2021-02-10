@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../header/header';
+import {Link} from "react-router-dom";
 
-const Login = () => {
+const Footer = () => {
 
   return (
   <footer className="footer container">
-    <a className="footer__logo-link" href="main.html">
+    <Link className="footer__logo-link" to="/">
       <img
       className="footer__logo"
       src="img/logo.svg"
@@ -13,9 +13,9 @@ const Login = () => {
       width={64}
       height={33}
       />
-    </a>
+    </Link>
   </footer>
   );
 };
 
-export default Footer
+export default Footer;

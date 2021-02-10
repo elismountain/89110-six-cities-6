@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const PageNotFound = () => {
   return (
@@ -6,7 +7,7 @@ const PageNotFound = () => {
     <h1>
       404.
       <br />
-      <small>Page not found</small>
+      <strong>Page not found</strong>
     </h1>
     <Link to="/">Go to the main page</Link>
   </Fragment>
