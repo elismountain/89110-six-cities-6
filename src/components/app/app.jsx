@@ -10,22 +10,22 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 const App = ({adCount, cities}) => {
   return (
     <BrowserRouter>
-    <Switch>
-      <Route path="/" exact>
-        <Main adCount={adCount} cities={cities} />
-      </Route>
-      <Route path="/login" exact>
-        <Login />
+      <Switch>
+        <Route path="/" exact>
+          <Main adCount={adCount} cities={cities} />
         </Route>
-      <Route path="/favorites" exact>
-        <Favorites />
-      </Route>
-      <Route path="/offer/:id?"exact>
-        <Offer />
-      </Route>
-      <Route>
-        <PageNotFound />
-      </Route>
+        <Route path="/login" exact>
+          <Login />
+        </Route>
+        <Route path="/favorites" exact>
+          <Favorites />
+        </Route>
+        <Route path="/offer/:id?"exact>
+          <Offer />
+        </Route>
+        <Route>
+          <PageNotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

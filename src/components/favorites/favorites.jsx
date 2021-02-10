@@ -155,7 +155,7 @@ const Favorites = () => {
       </section>
     </div>
     </main>
-    < Footer />
+    <Footer />
     </div>
   );
 };
