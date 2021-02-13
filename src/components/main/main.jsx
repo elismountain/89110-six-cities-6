@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import Header from '../header/header';
 import PlaceCard from '../place-card/place-card';
 import LocationsList from '../locations-list/locations-list';
+import {offerPropType} from '../../prop-types';
 
-const Main = ({adCount, cities}) => {
+const Main = (props) => {
+  const {currentCity, offers} = props;
 
   return (
     <div className="page page--gray page--main">
       <Header />
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${!offers.length ? `page__main--index-empty` : ``}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -17,10 +19,13 @@ const Main = ({adCount, cities}) => {
           </section>
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
+        {offers.length
+          ? <div className="cities__places-container container">
             <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{adCount} places to stay in Amsterdam</b>
+            <h2 className="visually-hidden">Places</h2>
+
+              <b className="places__found">{offers.length} places to stay in {currentCity}</b>
+              // вынести сортировку в отдельный компонент
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -32,8 +37,7 @@ const Main = ({adCount, cities}) => {
                 <ul className="places__options places__options--custom places__options--opened">
                   <li
                     className="places__option places__option--active"
-                    tabIndex={0}
-                  >
+                    tabIndex={0}>
                     Popular
                   </li>
                   <li className="places__option" tabIndex={0}>
@@ -47,14 +51,16 @@ const Main = ({adCount, cities}) => {
                   </li>
                 </ul>
               </form>
+              // вынести офферы  в отдельный компонент
               <div className="cities__places-list places__list tabs__content">
-                {Array(adCount).fill().slice(0, 5).map((item) => <PlaceCard key={item}/>)}
+                {Array(offers).fill().slice(0, 5).map((item) => <PlaceCard key={item}/>)}
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />
             </div>
           </div>
+        }
         </div>
       </main>
     </div>
@@ -62,8 +68,8 @@ const Main = ({adCount, cities}) => {
 };
 
 Main.propTypes = {
-  adCount: PropTypes.number.isRequired,
-  cities: PropTypes.arrayOf(PropTypes.string)
+  currentCity: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(offerPropType)
 };
 
 export default Main;

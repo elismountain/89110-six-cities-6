@@ -2,15 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
 
-const Setting = {
-  AD_COUNT: 312,
-  CITIES: [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`]
-};
+import offers from './mocks/offers';
+import reviews from './mocks/reviews';
+import currentCity from './const';
+
 
 ReactDOM.render(
     <App
-      adCount={Setting.AD_COUNT}
-      cities={Setting.CITIES}
+      currentCity={currentCity}
+      offers={offers}
+      reviews={reviews}
     />,
     document.querySelector(`#root`)
 );

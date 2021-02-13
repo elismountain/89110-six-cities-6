@@ -1,23 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Cities} from '../../const';
 
-const LocationsList = ({cities}) => {
+const LocationsList = (props) => {
+  const {currentCity} = props;
 
   return (
     <ul className="locations__list tabs__list">
-      {cities.map((city) => (
-        <li className="locations__item" key={city}>
-          <a className={city === `Amsterdam` ? `locations__item-link tabs__item tabs__item--active` : `locations__item-link     tabs__item`} href="#">
-            <span>{city}</span>
-          </a>
-        </li>
+    {Object.values(Cities).map((city) => (
+      <li className="locations__item" key={city}>
+        <a className={`locations__item-link tabs__item ${city === currentCity ? `tabs__item--active` : ``}`} href="#">
+          <span>{city}</span>
+        </a>
+      </li>
       ))}
     </ul>
   );
 };
 
+
 LocationsList.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string)
+  currentCity: PropTypes.string.isRequired
 };
 
 export default LocationsList;
