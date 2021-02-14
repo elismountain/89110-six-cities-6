@@ -23,7 +23,7 @@ const App = (props) => {
           <Favorites offers={offers.filter((offer) => offer.isFavorite)}/>
         </Route>
         <Route path="/offer/:id?"exact>
-          <Offer offer={offer} reviews={reviews} />
+          <Offer offers={offers} reviews={reviews} />
         </Route>
         <Route>
           <PageNotFound />
@@ -36,7 +36,7 @@ const App = (props) => {
 App.propTypes = {
   currentCity: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(offerPropType),
-  reviews: PropTypes.arrayOf(reviewPropType)
+  // reviews: PropTypes.arrayOf(reviewPropType)
 };
 
 export default App;

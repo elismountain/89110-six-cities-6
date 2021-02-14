@@ -4,7 +4,7 @@ import App from './components/app/app';
 
 import offers from './mocks/offers';
 import reviews from './mocks/reviews';
-import currentCity from './const';
+import {currentCity} from './const';
 
 
 ReactDOM.render(

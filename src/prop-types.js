@@ -13,10 +13,10 @@ export const offerPropType = PropTypes.shape({
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  type: PropTypes.oneOff([`apartment`, `room`, `house`, `hotel`]),
+  type: PropTypes.oneOf([`apartment`, `room`, `house`, `hotel`]),
   description: PropTypes.string.isRequired,
-  isFavorite: PropTypes.boolean.isRequired,
-  isPremium: PropTypes.boolean.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  isPremium: PropTypes.bool.isRequired,
   bedrooms: PropTypes.number.isRequired,
   goods: PropTypes.arrayOf(PropTypes.string).isRequired,
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -28,7 +28,7 @@ export const offerPropType = PropTypes.shape({
   host: PropTypes.shape({
     avatarUrl: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
-    isPro: PropTypes.boolean.isRequired,
+    isPro: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired,
   })
 });
@@ -42,7 +42,7 @@ export const offerPropType = PropTypes.shape({
 //   user: PropTypes.shape({
 //     avatarUrl: PropTypes.string.isRequired,
 //     id: PropTypes.number.isRequired,
-//     isPro: PropTypes.boolean.isRequired,
+//     isPro: PropTypes.bool.isRequired,
 //     name: PropTypes.number.isRequired
 //   })
 // });

@@ -7,4 +7,11 @@ export const Cities = {
   DUSSELDORF: `Dusseldorf`
 };
 
+
+export const cardTypes = {
+  MAIN: `main`,
+  FAVORITES: `favorites`,
+  NEARBY: `nearby`
+};
+
 export const currentCity = Cities.AMSTERDAM;
