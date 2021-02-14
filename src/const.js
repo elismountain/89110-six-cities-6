@@ -15,3 +15,26 @@ export const cardTypes = {
 };
 
 export const currentCity = Cities.AMSTERDAM;
+
+export const RATING = [
+  {
+    value: 5,
+    title: `perfect`
+  },
+  {
+    value: 4,
+    title: `good`
+  },
+  {
+    value: 3,
+    title: `not bad`
+  },
+  {
+    value: 2,
+    title: `bad`
+  },
+  {
+    value: 1,
+    title: `terrible`
+  }
+];

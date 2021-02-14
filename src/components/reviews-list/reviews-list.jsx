@@ -1,33 +1,41 @@
 import React from 'react';
+import {reviewPropType} from '../../prop-types';
 
-const ReviewsList = () => {
+const ReviewsList = (props) => {
+  const {reviews} = props;
 
   return (
-    <ul class="reviews__list">
-      <li class="reviews__item">
-        <div class="reviews__user user">
-          <div class="reviews__avatar-wrapper user__avatar-wrapper">
-            <img class="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar">
+    <ul classNameName="reviews__list">
+    {reviews.map(review) => (
+      <li classNameName="reviews__item" key={review.id}>
+        <div className="reviews__user user">
+          <div className="reviews__avatar-wrapper user__avatar-wrapper">
+            <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width={54} height={54} alt="Reviews avatar">
           </div>
-          <span class="reviews__user-name">
-            Max
+          <span className="reviews__user-name">
+            {review.user.name}
           </span>
         </div>
-        <div class="reviews__info">
-          <div class="reviews__rating rating">
-            <div class="reviews__stars rating__stars">
-              <span style="width: 80%"></span>
-              <span class="visually-hidden">Rating</span>
+        <div className="reviews__info">
+          <div className="reviews__rating rating">
+            <div className="reviews__stars rating__stars">
+              <span style={{width: `80%`}}></span>
+              <span className="visually-hidden">Rating</span>
             </div>
           </div>
-          <p class="reviews__text">
-            A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+          <p className="reviews__text">
+            {review.comment}
           </p>
-          <time class="reviews__time" datetime="2019-04-24">April 2019</time>
+          <time className="reviews__time" datetime="2019-04-24">April 2019</time>
         </div>
       </li>
+    ))}
     </ul>
   );
+};
+
+ReviewsList.propTypes = {
+  reviews: PropTypes.arrayOf(reviewPropType)
 };
 
 export default ReviewsList;
