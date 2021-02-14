@@ -36,7 +36,7 @@ const App = (props) => {
 App.propTypes = {
   currentCity: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(offerPropType),
-  // reviews: PropTypes.arrayOf(reviewPropType)
+  reviews: PropTypes.arrayOf(reviewPropType)
 };
 
 export default App;
