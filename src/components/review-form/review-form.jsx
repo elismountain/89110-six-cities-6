@@ -10,7 +10,7 @@ const ReviewForm = () => {
       <div className="reviews__rating-form form__rating">
       {RATING.map(({value, title}) => (
         <React.Fragment key={value}>
-          <input className="form__rating-input visually-hidden" name="rating" value={value} id="5-stars" type="radio">
+          <input className="form__rating-input visually-hidden" name="rating" value={value} id="5-stars" type="radio"/>
           <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title={title}>
             <svg className="form__star-image" width={37} height={37}>
               <use xlinkHref="#icon-star"></use>

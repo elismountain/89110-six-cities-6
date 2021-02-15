@@ -1,26 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import {offerPropType} from '../../prop-types';
+import {cardTypes, OfferTypes} from '../../const';
 
-const PlaceCard = () => {
+const PlaceCard = (props) => {
+  const {offer, type} = props;
+
   return (
     <article className="cities__place-card place-card">
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`/offer/${offer.id}`}>
           <img
           className="place-card__image"
-          src="img/room.jpg"
+          src={offer.previewImage}
           width={260}
           height={200}
           alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;80</b>
+            <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+          <button className={`place-card__bookmark-button button ${offer.isFavorite ? `place-card__bookmark-button--active` : ``}`} type="button">
             <svg
             className="place-card__bookmark-icon"
             width={18}
@@ -38,12 +44,17 @@ const PlaceCard = () => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">Wood and stone place</a>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">Private room</p>
       </div>
     </article>
   );
+};
+
+PlaceCard.propTypes = {
+  offer: offerPropType,
+  type: PropTypes.string.isRequired,
 };
 
 export default PlaceCard;

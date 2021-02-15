@@ -5,7 +5,7 @@ import Main from "../main/main";
 import Login from "../login/login";
 import PageNotFound from "../page-not-found/page-not-found";
 import Favorites from "../favorites/favorites";
-import Offer from "../offer/offer";
+import OfferScreen from "../offer-screen/offer-screen";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 const App = (props) => {
@@ -23,7 +23,7 @@ const App = (props) => {
           <Favorites offers={offers.filter((offer) => offer.isFavorite)}/>
         </Route>
         <Route path="/offer/:id?"exact>
-          <Offer offers={offers} reviews={reviews} />
+          <OfferScreen offers={offers} reviews={reviews} />
         </Route>
         <Route>
           <PageNotFound />
