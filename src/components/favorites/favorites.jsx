@@ -2,7 +2,8 @@ import React from 'react';
 import Header from "../header/header";
 import Footer from "../footer/footer";
 
-const Favorites = () => {
+const Favorites = (props) => {
+  const {offers} = props;
   return (
     <div className="page">
     <Header />
