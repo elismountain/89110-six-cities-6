@@ -5,7 +5,15 @@ import {cityPropType, offerPropType} from '../../prop-types';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const Map () {
+const Map (props) {
+  const {city, points} = props;
+  const mapRef = useRef();
+
+  const icon = leaflet.icon({
+    iconUrl: `img/pin.svg`,
+    iconSize: [27, 39]
+  })
+
   return (
     <div id="map"></div>
   );
