@@ -6,6 +6,7 @@ import PlacesList from '../places-list/places-list';
 import LocationsList from '../locations-list/locations-list';
 import OffersSorting from '../offers-sorting/offers-sorting';
 import {offerPropType} from '../../prop-types';
+import Map from '../map/map';
 
 const Main = (props) => {
   const {currentCity, offers} = props;
