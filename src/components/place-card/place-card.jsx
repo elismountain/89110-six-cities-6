@@ -5,11 +5,21 @@ import {offerPropType} from '../../prop-types';
 import {cardTypes, OfferTypes} from '../../const';
 
 const PlaceCard = (props) => {
-  const {offer, type} = props;
+  const {offer, type, onMouseEnter} = props;
+
+  const handleMouseEnter = () => {
+  onMouseEnter(offer);
+};
+
+const classModifier = {
+  [cardTypes.MAIN]: `cities__`,
+  [cardTypes.FAVORITES]: `favorites__`,
+  [cardTypes.NEARBY]: `near-places__`
+};
 
   return (
-    <article className="cities__place-card place-card">
-      <div className="cities__image-wrapper place-card__image-wrapper">
+    <article className={`place-card ${classModifier[type]}place-card`} onMouseEnter={handleMouseEnter}>
+      <div className={`${classModifier[type]}__image-wrapper place-card__image-wrapper`}>
         <Link to={`/offer/${offer.id}`}>
           <img
           className="place-card__image"
@@ -46,7 +56,7 @@ const PlaceCard = (props) => {
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">Private room</p>
+        <p className="place-card__type">{OfferTypes}</p>
       </div>
     </article>
   );
@@ -55,6 +65,7 @@ const PlaceCard = (props) => {
 PlaceCard.propTypes = {
   offer: offerPropType,
   type: PropTypes.string.isRequired,
+  onMouseEnter: PropTypes.func
 };
 
 export default PlaceCard;

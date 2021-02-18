@@ -14,8 +14,6 @@ export const cardTypes = {
   NEARBY: `nearby`
 };
 
-export const currentCity = Cities.AMSTERDAM;
-
 export const RATING = [
   {
     value: 5,

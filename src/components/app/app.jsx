@@ -9,12 +9,12 @@ import OfferScreen from "../offer-screen/offer-screen";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 const App = (props) => {
-  const {currentCity, offers, reviews} = props;
+  const {offers, reviews} = props;
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
-          <Main currentCity={currentCity} offers={offers.filter((offer) => offer.city.name === currentCity)} />
+          <Main offers={offers} />
         </Route>
         <Route path="/login" exact>
           <Login />
@@ -34,7 +34,6 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  currentCity: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(offerPropType),
   reviews: PropTypes.arrayOf(reviewPropType)
 };

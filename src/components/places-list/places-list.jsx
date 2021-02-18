@@ -8,6 +8,14 @@ const PlacesList = (props) => {
   const {offers} = props;
   const [activeCard, setActiveCard] = useState({});
 
+  const handleMouseEnter = (selectedCard) => {
+    setActiveCard(selectedCard);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveCard({});
+  };
+
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (
@@ -16,6 +24,8 @@ const PlacesList = (props) => {
         offer={offer.id}
         type={cardTypes.MAIN}
         isActive={activeCard.id ===offer.id}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         />
       ))}
     </div>

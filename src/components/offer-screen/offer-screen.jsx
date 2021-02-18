@@ -4,6 +4,7 @@ import Header from "../header/header";
 import PropTypes from 'prop-types';
 import ReviewForm from "../review-form/review-form";
 import ReviewsList from "../reviews-list/reviews-list";
+import Map from "../map/map";
 import {reviewPropType, offerPropType} from '../../prop-types';
 
 const OfferScreen = (props) => {
@@ -111,6 +112,7 @@ const OfferScreen = (props) => {
             </div>
           </div>
           <section className="property__map map" />
+          <Map />
         </section>
         <div className="container">
           <section className="near-places places">
