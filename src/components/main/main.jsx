@@ -10,8 +10,8 @@ import {Cities} from '../../const';
 
 const Main = (props) => {
   const {offers} = props;
-  const {activeCity, setSctiveCity} = useState(Cities.PARIS);
-  const filteredOffers = offers.filter(offer) => offer.city.name === activeCity);
+  const [activeCity, setActiveCity] = useState(Cities.PARIS);
+  const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
 
   const handleCityClick = (evt) => {
   evt.preventDefault();
