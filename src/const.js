@@ -8,7 +8,7 @@ export const Cities = {
 };
 
 
-export const cardTypes = {
+export const CardTypes = {
   MAIN: `main`,
   FAVORITES: `favorites`,
   NEARBY: `nearby`
