@@ -6,7 +6,7 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Map = (props) => {
-  const {city, points} = props;
+  const {city, points, className = `cities__map map`} = props;
   const mapRef = useRef();
 
   const icon = leaflet.icon({
@@ -15,7 +15,7 @@ const Map = (props) => {
   });
 
   useEffect(() => {
-    mapRef.current = leaflet.map(`map`, {
+    mapRef.current = leaflet.map(mapRef.current, {
       center: [city.location.latitude, city.location.longitude],
       zoom: city.location.zoom
     });
@@ -40,13 +40,14 @@ const Map = (props) => {
   }, [points]);
 
   return (
-    <div id="map" style={{height: `100%`}} ref={mapRef}></div>
+    <section className={className} style={{height: `100%`}} ref={mapRef}></section>
   );
 };
 
 Map.propTypes = {
   city: cityPropType,
-  points: PropTypes.arrayOf(offerPropType)
+  points: PropTypes.arrayOf(offerPropType),
+  className: PropTypes.string,
 };
 
 
