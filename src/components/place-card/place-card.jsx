@@ -6,19 +6,18 @@ import {CardTypes, OfferTypes} from '../../const';
 
 const PlaceCard = (props) => {
   const {offer, cardType, onMouseEnter, onMouseLeave} = props;
-
   const handleMouseEnter = () => {
-  onMouseEnter(offer);
-};
+    onMouseEnter(offer);
+  };
 
-const classModifier = {
-  [CardTypes.MAIN]: `cities__`,
-  [CardTypes.FAVORITES]: `favorites__`,
-  [CardTypes.NEARBY]: `near-places__`
-};
+  const classModifier = {
+    [CardTypes.MAIN]: `cities__`,
+    [CardTypes.FAVORITES]: `favorites__`,
+    [CardTypes.NEARBY]: `near-places__`
+  };
 
   return (
-      <article className={`place-card ${classModifier[cardType]}place-card`} onMouseEnter={handleMouseEnter} onMouseLeave={onMouseLeave}>
+    <article className={`place-card ${classModifier[cardType]}place-card`} onMouseEnter={handleMouseEnter} onMouseLeave={onMouseLeave}>
       <div className={`${classModifier[cardType]}__image-wrapper place-card__image-wrapper`}>
         <Link to={`/offer/${offer.id}`}>
           <img className="place-card__image" src={offer.previewImage} width={cardType === CardTypes.FAVORITES ? `150` : `260`} height={cardType === CardTypes.FAVORITES ? `110` : `200`} alt="Place image" />

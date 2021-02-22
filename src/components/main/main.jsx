@@ -15,26 +15,26 @@ const Main = (props) => {
 
   const handleCityClick = (evt) => {
   evt.preventDefault();
-  setActiveCity(evt.target.innerText);
+  setActiveCity();
 };
 
   return (
     <div className="page page--gray page--main">
-      <Header />
-      <main className={`page__main page__main--index ${!filteredOffers.length ? `page__main--index-empty` : ``}`}>
-        <h1 className="visually-hidden">Cities</h1>
+    <Header />
+    <main className={`page__main page__main--index ${!filteredOffers.length ? `page__main--index-empty` : ``}`}>
+      <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              {Object.values(Cities).map((city) => (
-                <li className="locations__item" key={city} onClick={handleCityClick}>
-                  <a className={`locations__item-link tabs__item ${city === activeCity ? `tabs__item--active` : ``}`} href="#">
-                    <span>{city}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+        <section className="locations container">
+          <ul className="locations__list tabs__list">
+          {Object.values(Cities).map((city) => (
+            <li className="locations__item" key={city} onClick={() => setActiveCity(city)}>
+              <a className={`locations__item-link tabs__item ${city === activeCity ? `tabs__item--active` : ``}`} href="#">
+                <span>{city}</span>
+              </a>
+            </li>
+          ))}
+          </ul>
+        </section>
         </div>
         <div className="cities">
         {filteredOffers.length

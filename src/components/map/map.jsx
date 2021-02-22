@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {cityPropType, offerPropType} from '../../prop-types';
 
@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 
 const Map = (props) => {
   const {city, points, className = `cities__map map`} = props;
+  // const {location, setLocation} = useState({lat: 52.38333, lng: 4.9});
   const mapRef = useRef();
 
   const icon = leaflet.icon({
@@ -15,7 +16,7 @@ const Map = (props) => {
   });
 
   useEffect(() => {
-    mapRef.current = leaflet.map(mapRef.current, {
+    const map = leaflet.map(mapRef.current, {
       center: [city.location.latitude, city.location.longitude],
       zoom: city.location.zoom
     });
@@ -24,17 +25,17 @@ const Map = (props) => {
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-      .addTo(mapRef.current);
+      .addTo(map);
 
     points.forEach((point) => {
       leaflet
         .marker([point.location.latitude, point.location.longitude], {icon})
-        .addTo(mapRef.current)
+        .addTo(map)
         .bindPopup(point.title);
     });
 
     return () => {
-      mapRef.current.remove();
+      map.remove();
     };
 
   }, [points]);
