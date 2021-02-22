@@ -2,24 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {offerPropType} from '../../prop-types';
-import {cardTypes, OfferTypes} from '../../const';
+import {CardTypes, OfferTypes} from '../../const';
 
 const PlaceCard = (props) => {
-  const {offer, type} = props;
+  const {offer, cardType, onMouseEnter, onMouseLeave} = props;
+  const handleMouseEnter = () => {
+    onMouseEnter(offer);
+  };
+
+  const classModifier = {
+    [CardTypes.MAIN]: `cities__`,
+    [CardTypes.FAVORITES]: `favorites__`,
+    [CardTypes.NEARBY]: `near-places__`
+  };
 
   return (
-    <article className="cities__place-card place-card">
-      <div className="cities__image-wrapper place-card__image-wrapper">
+    <article className={`place-card ${classModifier[cardType]}place-card`} onMouseEnter={handleMouseEnter} onMouseLeave={onMouseLeave}>
+      <div className={`${classModifier[cardType]}__image-wrapper place-card__image-wrapper`}>
         <Link to={`/offer/${offer.id}`}>
-          <img
-          className="place-card__image"
-          src={offer.previewImage}
-          width={260}
-          height={200}
-          alt="Place image"
-          />
+          <img className="place-card__image" src={offer.previewImage} width={cardType === CardTypes.FAVORITES ? `150` : `260`} height={cardType === CardTypes.FAVORITES ? `110` : `200`} alt="Place image" />
         </Link>
-      </div>
+      </ div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
@@ -46,7 +49,7 @@ const PlaceCard = (props) => {
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">Private room</p>
+        <p className="place-card__type">{OfferTypes[offer.type.toUpperCase()]}</p>
       </div>
     </article>
   );
@@ -54,7 +57,14 @@ const PlaceCard = (props) => {
 
 PlaceCard.propTypes = {
   offer: offerPropType,
-  type: PropTypes.string.isRequired,
+  cardType: PropTypes.oneOf(Object.values(CardTypes)),
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func
+
+};
+
+PlaceCard.defaultProps = {
+  onMouseEnter: () => {}
 };
 
 export default PlaceCard;

@@ -2,10 +2,18 @@ import React from 'react';
 
 import {RATING} from '../../const';
 
+
 const ReviewForm = () => {
 
+  const [reviewForm, setReviewForm] = useState({});
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+  };
+
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" for="review">Your review</label>
       <div className="reviews__rating-form form__rating">
       {RATING.map(({value, title}) => (
