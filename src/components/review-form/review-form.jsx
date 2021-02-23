@@ -11,6 +11,11 @@ const ReviewForm = () => {
     evt.preventDefault();
   };
 
+  const handleFieldChange = (evt) => {
+    const {name, value} = evt.target;
+    setReviewForm({...reviewForm, [name]: value});
+  };
+
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
@@ -29,7 +34,9 @@ const ReviewForm = () => {
     </div>
 
     <textarea className="reviews__textarea form__textarea" id="review" name="review"
-    placeholder="Tell how was your stay, what you like and what can be improved"/>
+    placeholder="Tell how was your stay, what you like and what can be improved"
+    value={reviewForm.text}
+    onChange={handleFieldChange}/>
 
     <div className="reviews__button-wrapper">
       <p className="reviews__help">

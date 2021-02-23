@@ -5,6 +5,13 @@ import {reviewPropType} from '../../prop-types';
 const ReviewsList = (props) => {
   const {reviews} = props;
 
+  const longDate = new Date(review.date).toLocaleString(`en-US`, {year: `numeric`, month: `long`});
+  const shortDate = new Date(review.date).toLocaleString(`en-CA`, {dateStyle: `short`});
+
+  const getStarsWidth = (rating) => {
+    return `${Math.round(rating) * 20}%`;
+  };
+
   return (
 
     <ul className="reviews__list">
@@ -21,14 +28,14 @@ const ReviewsList = (props) => {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: `80%`}}></span>
+            <span style={{width: `${getStarsWidth(review.rating)}`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" datetime="2019-04-24">April 2019</time>
+        <time className="reviews__time" datetime={shortDate}>{longDate}</time>
       </div>
     </li>
   ))}
@@ -39,5 +46,6 @@ const ReviewsList = (props) => {
 ReviewsList.propTypes = {
   reviews: PropTypes.arrayOf(reviewPropType)
 };
+
 
 export default ReviewsList;

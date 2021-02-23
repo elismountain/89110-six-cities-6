@@ -4,27 +4,29 @@ import PropTypes from 'prop-types';
 import {CardTypes} from '../../const';
 import {offerPropType} from '../../prop-types';
 
+import cn from 'classnames';
+
 const PlacesList = (props) => {
   const {offers, cardType = CardTypes.MAIN, onMouseEnter, onMouseLeave} = props;
-  const [activeCard, setActiveCard] = useState({});
 
-  const handleMouseEnter = (selectedCard) => {
-    setActiveCard(selectedCard);
-  };
-
-  const handleMouseLeave = () => {
-    setActiveCard({});
-  };
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className={cn(
+      {
+        'places__list': true,
+        'cities__places-list tabs__content': cardType === CardTypes.MAIN,
+        'near-places__list': cardType === CardTypes.NEARBY,
+        'favorites__places': cardType === CardTypes.FAVORITES
+      }
+    )}>
+
       {offers.map((offer) => (
         <PlaceCard
         key={offer.id}
         offer={offer}
         cardType={cardType}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
         />
       ))}
     </div>
