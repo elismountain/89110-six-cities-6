@@ -8,6 +8,7 @@ import PlacesList from "../places-list/places-list";
 import Map from "../map/map";
 import {reviewPropType, offerPropType} from '../../prop-types';
 import cn from 'classnames';
+import {CardTypes, OfferTypes} from '../../const';
 
 const OfferScreen = (props) => {
   const {offers, offersNearby, reviews, isAuthorized} = props;
