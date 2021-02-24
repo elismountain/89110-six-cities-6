@@ -6,7 +6,7 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Map = (props) => {
-  const {points, activePoint, className = `cities__map map`} = props;
+  const {city, points, activePoint, className = `cities__map map`} = props;
   const [map, setMap] = useState(null);
 
   const mapRef = useRef();
@@ -52,6 +52,7 @@ const Map = (props) => {
 };
 
 Map.propTypes = {
+  city:cityPropType,
   points: PropTypes.arrayOf(offerPropType),
   className: PropTypes.string,
   activePoint: offerPropType
