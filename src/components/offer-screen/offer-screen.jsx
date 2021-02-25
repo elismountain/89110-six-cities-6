@@ -7,13 +7,11 @@ import ReviewsList from "../reviews-list/reviews-list";
 import PlacesList from "../places-list/places-list";
 import Map from "../map/map";
 import {reviewPropType, offerPropType} from '../../prop-types';
-import cn from 'classnames';
 import {CardTypes, OfferTypes} from '../../const';
 
 const OfferScreen = (props) => {
   const {offers, offersNearby, reviews, isAuthorized} = props;
   const id = useParams();
-  const isAutorised = true;
 
   const offer = offers.find((item) => item.id === +id);
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PlaceCard from '../place-card/place-card';
 import PropTypes from 'prop-types';
 import {CardTypes} from '../../const';
@@ -12,21 +12,21 @@ const PlacesList = (props) => {
 
   return (
     <div className={cn(
-      {
-        'places__list': true,
-        'cities__places-list tabs__content': cardType === CardTypes.MAIN,
-        'near-places__list': cardType === CardTypes.NEARBY,
-        'favorites__places': cardType === CardTypes.FAVORITES
-      }
+        {
+          'places__list': true,
+          'cities__places-list tabs__content': cardType === CardTypes.MAIN,
+          'near-places__list': cardType === CardTypes.NEARBY,
+          'favorites__places': cardType === CardTypes.FAVORITES
+        }
     )}>
 
       {offers.map((offer) => (
         <PlaceCard
-        key={offer.id}
-        offer={offer}
-        cardType={cardType}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+          key={offer.id}
+          offer={offer}
+          cardType={cardType}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         />
       ))}
     </div>
@@ -41,4 +41,4 @@ PlacesList.propTypes = {
 
 };
 
-export default  PlacesList;
+export default PlacesList;

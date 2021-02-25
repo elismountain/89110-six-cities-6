@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {reviewPropType} from '../../prop-types';
 
 const ReviewsList = (props) => {
-  const {reviews} = props;
+  const {review} = props;
 
   const longDate = new Date(review.date).toLocaleString(`en-US`, {year: `numeric`, month: `long`});
   const shortDate = new Date(review.date).toLocaleString(`en-CA`, {dateStyle: `short`});
@@ -14,16 +14,12 @@ const ReviewsList = (props) => {
 
   return (
 
-    <ul className="reviews__list">
-    {reviews.map((review) => (
-    <li classNameName="reviews__item" key={review.id}>
+    <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width={54} height={54} alt="Reviews avatar"/>
+          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54" alt="Reviews avatar" />
         </div>
-        <span className="reviews__user-name">
-          {review.user.name}
-        </span>
+        <span className="reviews__user-name">{review.user.name}</span>
       </div>
       <div className="reviews__info">
         <div className="reviews__rating rating">
@@ -32,19 +28,15 @@ const ReviewsList = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <p className="reviews__text">
-          {review.comment}
-        </p>
-        <time className="reviews__time" datetime={shortDate}>{longDate}</time>
+        <p className="reviews__text">{review.comment}</p>
+        <time className="reviews__time" dateTime={shortDate}>{longDate}</time>
       </div>
     </li>
-  ))}
-</ul>
   );
 };
 
 ReviewsList.propTypes = {
-  reviews: PropTypes.arrayOf(reviewPropType)
+  review: PropTypes.arrayOf(reviewPropType)
 };
 
 
