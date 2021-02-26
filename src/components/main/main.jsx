@@ -41,7 +41,7 @@ const Main = (props) => {
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">
-                  <Map city={filteredOffers[0].city} points={filteredOffers} />
+                  <Map city={filteredOffers[0].city} points={filteredOffers} activeMarker={activeCity}/>
                 </ section>
               </div>
             </div>
