@@ -1,17 +1,18 @@
 import React, {useRef, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {cityPropType, offerPropType} from '../../prop-types';
+import {cityPropType} from '../../prop-types';
 
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Map = (props) => {
-  const {city, points, activePoint, className = `cities__map map`} = props;
+  const {city, points, activeMarker, className = `cities__map map`} = props;
   const [map, setMap] = useState(null);
+  const [markers, setMarkers] = useState(null);
 
   const mapRef = useRef();
 
-  const simpleIcon = leaflet.icon({
+  const defaultIcon = leaflet.icon({
     iconUrl: `img/pin.svg`,
     iconSize: [27, 39]
   });
@@ -21,40 +22,46 @@ const Map = (props) => {
     iconSize: [27, 39]
   });
 
-  useEffect(() => {
-    const nextMap = leaflet.map(mapRef.current, {
-      center: [city.location.latitude, city.location.longitude],
-      zoom: city.location.zoom
-    });
-
-    leaflet
-      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-      })
-      .addTo(nextMap);
-
-    setMap(nextMap);
-  }, []);
-
 
   useEffect(() => {
-    const markers = [];
+    if (!map) {
+      const nextMap = leaflet.map(mapRef.current, {
+        center: [city.location.latitude, city.location.longitude],
+        zoom: city.location.zoom
+      });
 
-    points.forEach((point) => {
-      const icon = (activePoint && (point.id === activePoint.id)) ? activeIcon : simpleIcon;
+      leaflet
+    .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+      attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+    }).addTo(nextMap);
+      setMap(nextMap);
+    }
+  }, [points]);
 
-      markers.push(
-          leaflet
-            .marker([point.location.latitude, point.location.longitude], {icon})
-            .addTo(map)
-      );
-    });
 
-    return () => {
-      markers.forEach((marker) => mapRef.current.removeLayer(marker));
-    };
+  useEffect(() => {
+    if (map) {
+      if (points.length) {
+        const pins = points.map((point) => {
+          return leaflet
+          .marker([point.location.latitude, point.location.longitude], {defaultIcon})
+          .addTo(map);
+        });
 
-  }, [points, activePoint]);
+
+        setMarkers(pins);
+      }
+    }
+  }, [points, map]);
+
+  useEffect(() => {
+    if (markers) {
+      markers.forEach((marker) => {
+        const isActive = marker.options.offerId === activeMarker;
+        marker.setIcon(isActive ? activeIcon : defaultIcon);
+      });
+    }
+  }, [markers, activeMarker]);
 
 
   return (
@@ -64,9 +71,12 @@ const Map = (props) => {
 
 Map.propTypes = {
   city: cityPropType,
-  points: PropTypes.arrayOf(offerPropType),
   className: PropTypes.string,
-  activePoint: offerPropType
+  activeMarker: PropTypes.number,
+  points: PropTypes.arrayOf(PropTypes.shape({
+    latitude: PropTypes.number,
+    longitude: PropTypes.number,
+  }))
 };
 
 export default Map;
