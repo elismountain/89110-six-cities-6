@@ -9,7 +9,6 @@
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
   },
-
   "devDependencies": {
     "eslint": "7.18.0",
     "eslint-config-htmlacademy": "2.1.0"
@@ -30,6 +29,7 @@
     "prop-types": "15.7.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
+    "react-redux": "7.2.2",
     "react-router-dom": "5.2.0",
     "redux": "4.0.5",
     "redux-devtools-extension": "2.13.8",

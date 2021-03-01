@@ -11,14 +11,13 @@ import offers from './mocks/offers';
 import reviews from './mocks/reviews';
 
 const store = createStore(
-  reducer,
-  composeWithDevTools()
+    reducer,
+    composeWithDevTools()
 );
 
 ReactDOM.render(
-    <App
-      offers={offers}
-      reviews={reviews}
-    />,
+    <Provider store={store}>
+      <App offers={offers} reviews={reviews} />
+    </ Provider>,
     document.querySelector(`#root`)
 );
