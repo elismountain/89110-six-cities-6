@@ -4,11 +4,12 @@
   "private": true,
   "description": "Личный проект «Шесть городов» от HTML Academy",
   "scripts": {
-    "eslint": "eslint src/**/*.js",
+    "eslint": "eslint --ext .jsx --ext .js src/",
     "test": "npm run eslint",
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
   },
+
   "devDependencies": {
     "eslint": "7.18.0",
     "eslint-config-htmlacademy": "2.1.0"

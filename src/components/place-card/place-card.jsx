@@ -31,9 +31,9 @@ const PlaceCard = (props) => {
           </div>
           <button className={`place-card__bookmark-button button ${offer.isFavorite ? `place-card__bookmark-button--active` : ``}`} type="button">
             <svg
-            className="place-card__bookmark-icon"
-            width={18}
-            height={19}
+              className="place-card__bookmark-icon"
+              width={18}
+              height={19}
             >
               <use xlinkHref="#icon-bookmark"/>
             </svg>

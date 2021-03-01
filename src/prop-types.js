@@ -26,8 +26,12 @@ export const offerPropType = PropTypes.shape({
   goods: PropTypes.arrayOf(PropTypes.string).isRequired,
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
   city: cityPropType.isRequired,
-  location: locationPropType.isRequired,
 
+  location: PropTypes.shape({
+    latitude: PropTypes.number.isRequired,
+    longitude: PropTypes.number.isRequired,
+    zoom: PropTypes.number.isRequired,
+  }),
   host: PropTypes.shape({
     avatarUrl: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
@@ -35,7 +39,6 @@ export const offerPropType = PropTypes.shape({
     name: PropTypes.string.isRequired,
   })
 });
-
 
 export const reviewPropType = PropTypes.shape({
   comment: PropTypes.string.isRequired,
