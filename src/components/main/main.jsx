@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../header/header';
 import PlacesList from '../places-list/places-list';
 import OffersSorting from '../offers-sorting/offers-sorting';
+import CitiesList from '../cities-list/cities-list';
 import {offerPropType} from '../../prop-types';
 import Map from '../map/map';
 import {Cities} from '../../const';
 
 const Main = (props) => {
-  const {offers} = props;
-  const [activeCity, setActiveCity] = useState(Cities.PARIS);
+  const {offers, activeCity} = props;
   const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
 
   return (
@@ -19,15 +19,7 @@ const Main = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              {Object.values(Cities).map((city) => (
-                <li className="locations__item" key={city} onClick={() => setActiveCity(city)}>
-                  <a className={`locations__item-link tabs__item ${city === activeCity ? `tabs__item--active` : ``}`} href="#">
-                    <span>{city}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <CitiesList />
           </section>
         </div>
         <div className="cities">
@@ -63,7 +55,9 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(offerPropType)
+  offers: PropTypes.arrayOf(offerPropType),
+  activeCity: PropTypes.oneOf(Object.values(Cities))
 };
+
 
 export default Main;

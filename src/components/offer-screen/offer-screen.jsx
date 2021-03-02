@@ -8,6 +8,7 @@ import PlacesList from "../places-list/places-list";
 import Map from "../map/map";
 import {reviewPropType, offerPropType} from '../../prop-types';
 import {CardTypes, OfferTypes} from '../../const';
+import {connect} from 'react-redux';
 
 const OfferScreen = (props) => {
   const {offers, offersNearby, reviews, isAuthorized} = props;
@@ -132,4 +133,9 @@ OfferScreen.propTypes = {
   isAuthorized: PropTypes.bool
 };
 
-export default OfferScreen;
+const mapStateToProps = (state) => ({
+  offers: state.offers
+});
+
+export {OfferScreen};
+export default connect(mapStateToProps, null)(OfferScreen);

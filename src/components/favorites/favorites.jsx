@@ -3,14 +3,11 @@ import Header from "../header/header";
 import Footer from "../footer/footer";
 import PropTypes from 'prop-types';
 import {offerPropType} from '../../prop-types';
+import {connect} from 'react-redux';
 import cn from 'classnames';
 
 const Favorites = (props) => {
   const {offers} = props;
-  // const offersByCity = offers.reduce((acc, cur) => {
-  //   acc[cur.city.name] = acc[cur.city.name] ? [...(acc[cur.city.name]), cur] : [cur];
-  //   return acc;
-  // }, {});
 
   return (
     <div className={cn(`page`, {'page--favorites-empty': !offers.length})}>
@@ -173,4 +170,9 @@ Favorites.propTypes = {
   offers: PropTypes.arrayOf(offerPropType)
 };
 
-export default Favorites;
+const mapStateToProps = (state) => ({
+  offers: state.favoriteOffers
+});
+
+export {Favorites};
+export default connect(mapStateToProps, null)(Favorites);
