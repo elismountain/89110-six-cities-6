@@ -11,7 +11,6 @@ import {Cities, CardTypes} from '../../const';
 import {sortOffers} from '../../sorting';
 import MainEmpty from '../main/main-empty';
 
-
 const Main = (props) => {
   const {offers, activeCity} = props;
   const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);

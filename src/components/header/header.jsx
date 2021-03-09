@@ -25,7 +25,7 @@ const Header = () => {
             </ul>
           </nav>
         </div>
-      </div>
+      </div>n
     </header>
   );
 };
