@@ -1,3 +1,10 @@
+export const Paths = {
+  MAIN: `/`,
+  LOGIN: `/login`,
+  FAVORITES: `/favorites`,
+  OFFER: `/offer/:id`
+};
+
 export const Cities = {
   PARIS: `Paris`,
   COLOGNE: `Cologne`,

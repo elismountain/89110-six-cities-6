@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {reviewPropType, offerPropType} from '../../prop-types';
+import {reviewPropType} from '../../prop-types';
 import Main from "../main/main";
 import Login from "../login/login";
 import PageNotFound from "../page-not-found/page-not-found";
@@ -8,22 +8,24 @@ import Favorites from "../favorites/favorites";
 import OfferScreen from "../offer-screen/offer-screen";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
+import {Paths} from '../../const';
+
 const App = (props) => {
-  const {offers, reviews} = props;
+  const {reviews} = props;
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact>
-          <Main offers={offers} />
+        <Route exact path={Paths.MAIN}>
+          <Main />
         </Route>
-        <Route path="/login" exact>
+        <Route exact path={Paths.LOGIN}>
           <Login />
         </Route>
-        <Route path="/favorites" exact>
-          <Favorites offers={offers.filter((offer) => offer.isFavorite)}/>
+        <Route exact path={Paths.FAVORITES}>
+          <Favorites />
         </Route>
-        <Route path="/offer/:id?"exact>
-          <OfferScreen offers={offers} reviews={reviews} />
+        <Route exact path={Paths.OFFER}>
+          <OfferScreen reviews={reviews} />
         </Route>
         <Route>
           <PageNotFound />
@@ -34,7 +36,6 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(offerPropType),
   reviews: PropTypes.arrayOf(reviewPropType)
 };
 
