@@ -10,15 +10,10 @@ import {ActionCreator} from '../../store/action';
 const CitiesList = (props) => {
   const {activeCity, onChangeCity} = props;
 
-  const handleCityClick = (evt) => {
-    evt.preventDefault();
-    onChangeCity(evt.target.innerText);
-  };
-
   return (
     <ul className="locations__list tabs__list">
       {Object.values(Cities).map((city) => (
-        <li className="locations__item" key={city} onClick={handleCityClick}>
+        <li className="locations__item" key={city} onClick={() => onChangeCity(city)}>
           <Link className={cn(`locations__item-link tabs__item`, {'tabs__item--active': city === activeCity})} to="/">
             <span>{city}</span>
           </Link>
