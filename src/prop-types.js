@@ -6,7 +6,7 @@ export const locationPropType = PropTypes.shape({
   zoom: PropTypes.number.isRequired
 });
 
-export const cityPropType = PropTypes.shape({
+const cityPropType = PropTypes.shape({
   location: locationPropType.isRequired,
   name: PropTypes.string.isRequired
 });

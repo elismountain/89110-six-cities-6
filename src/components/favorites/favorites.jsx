@@ -10,10 +10,14 @@ import cn from 'classnames';
 import {CardTypes} from '../../const';
 import PlacesList from '../places-list/places-list';
 import FavoritesEmpty from '../favorites/favorites-empty';
-import {offersByCity} from '../../filter';
 
 const Favorites = (props) => {
   const {offers} = props;
+
+  const offersByCity = offers.reduce((acc, cur) => {
+    acc[cur.city.name] = acc[cur.city.name] ? [...(acc[cur.city.name]), cur] : [cur];
+    return acc;
+  }, {});
 
   return (
     <div className={cn(`page`, {'page--favorites-empty': !offers.length})}>

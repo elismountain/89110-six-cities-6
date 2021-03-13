@@ -10,10 +10,11 @@ import Map from '../map/map';
 import {Cities, CardTypes} from '../../const';
 import {sortOffers} from '../../sorting';
 import MainEmpty from '../main/main-empty';
+import cn from 'classnames';
 
 const Main = (props) => {
-  const {offers, activeCity} = props;
-  const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
+  const {cityOffers, activeCity} = props;
+  const cityLocation = cityOffers.length ? cityOffers[0].city.location : {};
 
   const [activeCard, setActiveCard] = useState(null);
 
@@ -28,7 +29,7 @@ const Main = (props) => {
   return (
     <div className="page page--gray page--main">
       <Header />
-      <main className={`page__main page__main--index ${!filteredOffers.length ? `page__main--index-empty` : ``}`}>
+      <main className={cn(`page__main page__main--index`, {'page__main--index-empty': !cityOffers.length})}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -36,21 +37,21 @@ const Main = (props) => {
           </section>
         </div>
         <div className="cities">
-          {filteredOffers.length
+          {cityOffers.length
             ? <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{filteredOffers.length} places to stay in {activeCity}</b>
+                <b className="places__found">{cityOffers.length} places to stay in {activeCity}</b>
                 <OffersSorting/>
                 <PlacesList
-                  offers={filteredOffers}
+                  offers={cityOffers}
                   cardType={CardTypes.MAIN}
                   onCardMouseEnter={handleCardMouseEnter}
                   onCardMouseLeave={handleCardMouseLeave}/>
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">
-                  <Map city={filteredOffers[0].city} points={filteredOffers} activeMarker={activeCard}/>
+                  <Map city={cityLocation} points={cityOffers} activeMarker={activeCard}/>
                 </ section>
               </div>
             </div>
@@ -64,13 +65,13 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(offerPropType),
+  cityOffers: PropTypes.arrayOf(offerPropType),
   activeCity: PropTypes.oneOf(Object.values(Cities))
 };
 
 const mapStateToProps = (state) => ({
   activeCity: state.activeCity,
-  offers: sortOffers(state.offers, state.activeSorting)
+  cityOffers: sortOffers(state.cityOffers, state.activeSorting)
 });
 
 export {Main};

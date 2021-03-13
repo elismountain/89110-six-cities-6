@@ -16,12 +16,13 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CITY:
       return {
         ...state,
-        activeCity: action.payload
+        activeCity: action.payload,
+        cityOffers: getCityOffers(state.offers, state.activeCity)
       };
     case ActionType.SET_CITY_OFFERS:
       return {
         ...state,
-        cityOffers: getCityOffers(state.offers, state.activeCity)
+
       };
     case ActionType.CHANGE_SORTING:
       return {
