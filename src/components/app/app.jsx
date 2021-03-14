@@ -5,7 +5,7 @@ import Main from "../main/main";
 import Login from "../login/login";
 import PageNotFound from "../page-not-found/page-not-found";
 import Favorites from "../favorites/favorites";
-import OfferScreen from "../offer-screen/offer-screen";
+import OfferScreenContainer from '../offer-screen/offer-screen-container';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import {Paths} from '../../const';
@@ -25,7 +25,7 @@ const App = (props) => {
           <Favorites />
         </Route>
         <Route exact path={Paths.OFFER}>
-          <OfferScreen reviews={reviews} />
+          <OfferScreenContainer reviews={reviews} />
         </Route>
         <Route>
           <PageNotFound />

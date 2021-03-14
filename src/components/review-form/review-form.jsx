@@ -16,7 +16,6 @@ const ReviewForm = () => {
     setReviewForm({...reviewForm, [name]: value});
   };
 
-
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>

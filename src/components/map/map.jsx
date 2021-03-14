@@ -40,7 +40,7 @@ const Map = (props) => {
   useEffect(() => {
     if (map && points.length) {
       points.map((point) => {
-        const icon = point.offerId === activeMarker
+        const icon = point.id === activeMarker
           ? activeIcon
           : defaultIcon;
 
@@ -62,10 +62,7 @@ Map.propTypes = {
   city: offerPropType,
   className: PropTypes.string,
   activeMarker: PropTypes.string,
-  points: PropTypes.arrayOf(PropTypes.shape({
-    latitude: PropTypes.number,
-    longitude: PropTypes.number,
-  }))
+  points: PropTypes.arrayOf(offerPropType)
 };
 
 export default Map;

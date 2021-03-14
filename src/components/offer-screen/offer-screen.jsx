@@ -1,5 +1,4 @@
 import React from "react";
-import {Redirect, useParams} from 'react-router-dom';
 import Header from "../header/header";
 import PropTypes from 'prop-types';
 import ReviewForm from "../review-form/review-form";
@@ -8,16 +7,12 @@ import PlacesList from "../places-list/places-list";
 import Map from "../map/map";
 import {reviewPropType, offerPropType} from '../../prop-types';
 import {CardTypes, OfferTypes} from '../../const';
+import {getStarsWidth} from '../../utils';
+import cn from 'classnames';
+
 
 const OfferScreen = (props) => {
-  const {offers, offersNearby, reviews, isAuthorized} = props;
-  const id = useParams();
-
-  const offer = offers.find((item) => item.id === +id);
-
-  if (!offer) {
-    return <Redirect to="/" />;
-  }
+  const {offer, offersNearby, reviews, isAuthorized} = props;
 
   return (
     <div className="page">
@@ -33,6 +28,7 @@ const OfferScreen = (props) => {
               ))}
             </div>
           </div>
+
           <div className="property__container container">
             <div className="property__wrapper">
               {offer.isPremium &&
@@ -41,9 +37,7 @@ const OfferScreen = (props) => {
                 </div>
               }
               <div className="property__name-wrapper">
-                <h1 className="property__name">
-                  {offer.title}
-                </h1>
+                <h1 className="property__name">{offer.title}</h1>
                 <button className={`property__bookmark-button button ${offer.isFavorite ? `property__bookmark-button--active` : ``}`} type="button">
                   <svg
                     className="property__bookmark-icon"
@@ -57,7 +51,7 @@ const OfferScreen = (props) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `80%`}} />
+                  <span style={{width: `${getStarsWidth(offer.rating)}`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{offer.value}</span>
@@ -74,25 +68,18 @@ const OfferScreen = (props) => {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  <li className="property__inside-item">Wi-Fi</li>
-                  <li className="property__inside-item">Washing machine</li>
-                  <li className="property__inside-item">Towels</li>
-                  <li className="property__inside-item">Heating</li>
-                  <li className="property__inside-item">Coffee machine</li>
-                  <li className="property__inside-item">Baby seat</li>
-                  <li className="property__inside-item">Kitchen</li>
-                  <li className="property__inside-item">Dishwasher</li>
-                  <li className="property__inside-item">Cabel TV</li>
-                  <li className="property__inside-item">Fridge</li>
+                  {offer.goods.map((item, i) => (
+                    <li className="property__inside-item" key={`item${i}`}>{item}</li>
+                  ))}
                 </ul>
               </div>
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
+                  <div className={cn(`property__avatar-wrapper user__avatar-wrapper`, {'property__avatar-wrapper--pro': offer.host.isPro})}>
                     <img
                       className="property__avatar user__avatar"
-                      src="img/avatar-angelina.jpg"
+                      src={offer.host.avatarUrl}
                       width={74}
                       height={74}
                       alt="Host avatar"
@@ -112,7 +99,7 @@ const OfferScreen = (props) => {
             </div>
           </div>
           <section className="property__map map" />
-          <Map city={offer.city} points={offersNearby} />
+          <Map city={offer.city.location} points={offersNearby} />
         </section>
         <div className="container">
           <section className="near-places places">
@@ -126,7 +113,7 @@ const OfferScreen = (props) => {
 };
 
 OfferScreen.propTypes = {
-  offers: PropTypes.arrayOf(offerPropType),
+  offer: offerPropType,
   offersNearby: PropTypes.arrayOf(offerPropType),
   reviews: PropTypes.arrayOf(reviewPropType),
   isAuthorized: PropTypes.bool

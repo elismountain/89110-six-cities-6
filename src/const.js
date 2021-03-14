@@ -90,3 +90,8 @@ export const Coordinates = {
     zoom: 13
   }
 };
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
