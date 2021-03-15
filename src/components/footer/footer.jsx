@@ -1,11 +1,12 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {Paths} from '../../const';
 
 const Footer = () => {
 
   return (
     <footer className="footer container">
-      <Link className="footer__logo-link" to="/">
+      <Link className="footer__logo-link" to={Paths.MAIN}>
         <img
           className="footer__logo"
           src="img/logo.svg"

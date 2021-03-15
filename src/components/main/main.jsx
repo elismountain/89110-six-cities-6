@@ -1,60 +1,62 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../header/header';
 import PlacesList from '../places-list/places-list';
 import OffersSorting from '../offers-sorting/offers-sorting';
+import CitiesList from '../cities-list/cities-list';
 import {offerPropType} from '../../prop-types';
 import Map from '../map/map';
-import {Cities} from '../../const';
+import {Cities, CardTypes} from '../../const';
+import {sortOffers} from '../../sorting';
+import MainEmpty from '../main/main-empty';
+import cn from 'classnames';
 
 const Main = (props) => {
-  const {offers} = props;
-  const [activeCity, setActiveCity] = useState(Cities.PARIS);
-  const filteredOffers = offers.filter((offer) => offer.city.name === activeCity);
+  const {cityOffers, activeCity} = props;
+  const cityLocation = cityOffers.length ? cityOffers[0].city.location : {};
+
+  const [activeCard, setActiveCard] = useState(null);
+
+  const handleCardMouseEnter = (selectedCard) => {
+    setActiveCard(selectedCard);
+  };
+
+  const handleCardMouseLeave = () => {
+    setActiveCard(null);
+  };
 
   return (
     <div className="page page--gray page--main">
       <Header />
-      <main className={`page__main page__main--index ${!filteredOffers.length ? `page__main--index-empty` : ``}`}>
+      <main className={cn(`page__main page__main--index`, {'page__main--index-empty': !cityOffers.length})}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              {Object.values(Cities).map((city) => (
-                <li className="locations__item" key={city} onClick={() => setActiveCity(city)}>
-                  <a className={`locations__item-link tabs__item ${city === activeCity ? `tabs__item--active` : ``}`} href="#">
-                    <span>{city}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <CitiesList />
           </section>
         </div>
         <div className="cities">
-          {filteredOffers.length
+          {cityOffers.length
             ? <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{filteredOffers.length} places to stay in {activeCity}</b>
+                <b className="places__found">{cityOffers.length} places to stay in {activeCity}</b>
                 <OffersSorting/>
-                <PlacesList offers={filteredOffers}/>
+                <PlacesList
+                  offers={cityOffers}
+                  cardType={CardTypes.MAIN}
+                  onCardMouseEnter={handleCardMouseEnter}
+                  onCardMouseLeave={handleCardMouseLeave}/>
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">
-                  <Map city={filteredOffers[0].city} points={filteredOffers} activeMarker={activeCity}/>
+                  <Map city={cityLocation} points={cityOffers} activeMarker={activeCard}/>
                 </ section>
               </div>
             </div>
             :
-            <div className="cities__places-container container cities__places-container--empty">
-              <section className="cities__no-places">
-                <div className="cities__status-wrapper tabs__content">
-                  <b className="cities__status">No places to stay available</b>
-                  <p className="cities__status-description">We could not find any property available at the moment in {activeCity}</p>
-                </div>
-              </section>
-              <div className="cities__right-section"></div>
-            </div>
+            <MainEmpty activeCity={activeCity} />
           }
         </div>
       </main>
@@ -63,7 +65,14 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(offerPropType)
+  cityOffers: PropTypes.arrayOf(offerPropType),
+  activeCity: PropTypes.oneOf(Object.values(Cities))
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  activeCity: state.activeCity,
+  cityOffers: sortOffers(state.cityOffers, state.activeSorting)
+});
+
+export {Main};
+export default connect(mapStateToProps)(Main);
