@@ -42,7 +42,7 @@ export default [{
   },
   maxAdults: 4,
   previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/9.jpg`,
-  price: 120,
+  price: 100,
   rating: 4.8,
   title: `Beautiful & luxurious studio at great location`,
   type: `apartment`
@@ -140,7 +140,7 @@ export default [{
   },
   maxAdults: 4,
   previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/11.jpg`,
-  price: 120,
+  price: 130,
   rating: 4.8,
   title: `Beautiful & luxurious studio at great location`,
   type: `apartment`
@@ -188,7 +188,7 @@ export default [{
   },
   maxAdults: 4,
   previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg`,
-  price: 120,
+  price: 140,
   rating: 4.8,
   title: `Beautiful & luxurious studio at great location`,
   type: `apartment`

@@ -1,6 +1,6 @@
 import React, {useRef, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {offerPropType} from '../../prop-types';
+import {offerPropType, locationPropType} from '../../prop-types';
 
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -34,7 +34,7 @@ const Map = (props) => {
   }).addTo(nextMap);
     setMap(nextMap);
 
-  }, [points]);
+  }, []);
 
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const Map = (props) => {
 };
 
 Map.propTypes = {
-  city: offerPropType,
+  city: locationPropType,
   className: PropTypes.string,
   activeMarker: PropTypes.string,
   points: PropTypes.arrayOf(offerPropType)
