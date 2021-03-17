@@ -1,12 +1,13 @@
 import React, {useRef, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import {Cities} from '../../const';
 import {offerPropType, locationPropType} from '../../prop-types';
 
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Map = (props) => {
-  const {city, points, activeMarker, className = `cities__map map`} = props;
+  const {city, points, activePin, className = `cities__map map`} = props;
   const [map, setMap] = useState(null);
 
   const mapRef = useRef();
@@ -40,7 +41,7 @@ const Map = (props) => {
   useEffect(() => {
     if (map && points.length) {
       points.map((point) => {
-        const icon = point.id === activeMarker
+        const icon = point.id === activePin
           ? activeIcon
           : defaultIcon;
 
@@ -50,7 +51,7 @@ const Map = (props) => {
         ).addTo(map);
       });
     }
-  }, [points, map, activeMarker]);
+  }, [points, map, activePin]);
 
 
   return (
@@ -59,9 +60,9 @@ const Map = (props) => {
 };
 
 Map.propTypes = {
-  city: locationPropType,
+  city: PropTypes.oneOf(Object.values(Cities)),
   className: PropTypes.string,
-  activeMarker: PropTypes.string,
+  activePin: PropTypes.number,
   points: PropTypes.arrayOf(offerPropType)
 };
 

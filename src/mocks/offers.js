@@ -43,7 +43,7 @@ export default [{
   maxAdults: 4,
   previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/9.jpg`,
   price: 100,
-  rating: 4.8,
+  rating: 5,
   title: `Beautiful & luxurious studio at great location`,
   type: `apartment`
 }, {
@@ -72,7 +72,7 @@ export default [{
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/6.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/13.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/20.jpg`,
-    `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/18.jpg`,
+    `https//assets.htmlacademy.ru/intensives/javascript-3/hotel/18.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/8.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/17.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg`,
@@ -91,7 +91,7 @@ export default [{
   maxAdults: 4,
   previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/20.jpg`,
   price: 120,
-  rating: 4.8,
+  rating: 3.1,
   title: `Beautiful & luxurious studio at great location`,
   type: `apartment`
 },
@@ -141,7 +141,7 @@ export default [{
   maxAdults: 4,
   previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/11.jpg`,
   price: 130,
-  rating: 4.8,
+  rating: 4,
   title: `Beautiful & luxurious studio at great location`,
   type: `apartment`
 }, {
@@ -189,7 +189,7 @@ export default [{
   maxAdults: 4,
   previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg`,
   price: 140,
-  rating: 4.8,
+  rating: 2,
   title: `Beautiful & luxurious studio at great location`,
   type: `apartment`
 }

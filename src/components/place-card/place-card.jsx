@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {offerPropType} from '../../prop-types';
 import {CardTypes, OfferTypes} from '../../const';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/action';
+import {getStarsWidth} from '../../utils';
 
 const PlaceCard = (props) => {
-  const {offer, cardType, onMouseEnter, onMouseLeave} = props;
-  const handleMouseEnter = () => {
-    onMouseEnter(offer);
+  const {offer, cardType, setActivePin, resetActivePin} = props;
+
+  const onMouseEnterHandler = () => {
+    // getActiveCard(offer);
+    setActivePin(offer);
   };
 
   const classModifier = {
@@ -17,10 +22,10 @@ const PlaceCard = (props) => {
   };
 
   return (
-    <article className={`place-card ${classModifier[cardType]}place-card`} onMouseEnter={handleMouseEnter} onMouseLeave={onMouseLeave}>
+    <article className={`place-card ${classModifier[cardType]}place-card`} onMouseEnter={onMouseEnterHandler} onMouseLeave={resetActivePin}>
       <div className={`${classModifier[cardType]}__image-wrapper place-card__image-wrapper`}>
         <Link to={`/offer/${offer.id}`}>
-          <img className="place-card__image" src={offer.previewImage} width={cardType === CardTypes.FAVORITES ? `150` : `260`} height={cardType === CardTypes.FAVORITES ? `110` : `200`} alt="Place image" />
+          <img className="place-card__image" src={offer.previewImage} width={cardType === CardTypes.FAVORITES ? `150` : `260`} height={cardType === CardTypes.FAVORITES ? `110` : `200`} alt="Place image"/>
         </Link>
       </ div>
       <div className="place-card__info">
@@ -41,10 +46,10 @@ const PlaceCard = (props) => {
           </button>
         </div>
         <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `80%`}}/>
-            <span className="visually-hidden">Rating</span>
-          </div>
+        <div className="place-card__stars rating__stars">
+          <span style={{width: `${getStarsWidth(offer.rating)}`}}></span>
+          <span className="visually-hidden">Rating</span>
+        </div>
         </div>
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
@@ -58,13 +63,19 @@ const PlaceCard = (props) => {
 PlaceCard.propTypes = {
   offer: offerPropType,
   cardType: PropTypes.oneOf(Object.values(CardTypes)),
-  onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func
-
+  // getActiveCard: PropTypes.func.isRequired,
+  setActivePin: PropTypes.func.isRequired,
+  resetActivePin: PropTypes.func.isRequired,
 };
 
-PlaceCard.defaultProps = {
-  onMouseEnter: () => {}
-};
+const mapDispatchToProps = (dispatch) => ({
+  setActivePin(pin) {
+    dispatch(ActionCreator.changeActivePin(pin));
+  },
+  resetActivePin() {
+    dispatch(ActionCreator.resetActivePin());
+  },
+});
 
-export default PlaceCard;
+export {PlaceCard};
+export default connect(null, mapDispatchToProps)(PlaceCard);
