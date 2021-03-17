@@ -1,13 +1,15 @@
 import React, {useRef, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {Cities} from '../../const';
-import {offerPropType, locationPropType} from '../../prop-types';
+import {Cities, Coordinates} from '../../const';
+import {offerPropType} from '../../prop-types';
+// import {locationPropType} from '../../prop-types';
 
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Map = (props) => {
   const {city, points, activePin, className = `cities__map map`} = props;
+  const coords = Coordinates[city];
   const [map, setMap] = useState(null);
 
   const mapRef = useRef();
@@ -25,8 +27,8 @@ const Map = (props) => {
 
   useEffect(() => {
     const nextMap = leaflet.map(mapRef.current, {
-      center: [city.latitude, city.longitude],
-      zoom: city.zoom
+      center: [coords.latitude, coords.longitude],
+      zoom: coords.zoom
     });
 
     leaflet

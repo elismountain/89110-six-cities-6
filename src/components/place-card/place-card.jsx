@@ -46,10 +46,10 @@ const PlaceCard = (props) => {
           </button>
         </div>
         <div className="place-card__rating rating">
-        <div className="place-card__stars rating__stars">
-          <span style={{width: `${getStarsWidth(offer.rating)}`}}></span>
-          <span className="visually-hidden">Rating</span>
-        </div>
+          <div className="place-card__stars rating__stars">
+            <span style={{width: `${getStarsWidth(offer.rating)}`}}></span>
+            <span className="visually-hidden">Rating</span>
+          </div>
         </div>
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
