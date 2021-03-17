@@ -9,7 +9,6 @@ import {Cities, CardTypes} from '../../const';
 
 const MainOffers = (props) => {
   const {activeCity, offers} = props;
-  console.log(offers);
   const [activeCard, setActiveCard] = useState(null);
 
   const handleCardMouseEnter = (selectedCard) => {

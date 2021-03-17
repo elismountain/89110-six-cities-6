@@ -2,7 +2,6 @@ import React, {useRef, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Cities, Coordinates} from '../../const';
 import {offerPropType} from '../../prop-types';
-// import {locationPropType} from '../../prop-types';
 
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';

@@ -20,17 +20,17 @@ const reducer = (state = initialState, action) => {
         cityOffers: getCityOffers(state.offers, state.activeCity)
       };
 
-      case ActionType.ACTIVE_PIN:
-        return {
-          ...state,
-          activePin: action.payload,
-        };
+    case ActionType.ACTIVE_PIN:
+      return {
+        ...state,
+        activePin: action.payload,
+      };
 
-        case ActionType.RESET_ACTIVE_PIN:
-        return {
-          ...state,
-          activePin: null,
-        };
+    case ActionType.RESET_ACTIVE_PIN:
+      return {
+        ...state,
+        activePin: null,
+      };
 
     case ActionType.SET_CITY_OFFERS:
       return {
