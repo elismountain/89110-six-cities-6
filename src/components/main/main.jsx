@@ -12,12 +12,12 @@ import MainEmpty from '../main/main-empty';
 import cn from 'classnames';
 
 const Main = (props) => {
-  const {cityOffers, activeCity} = props;
+  const {offers, activeCity} = props;
 
   return (
     <div className="page page--gray page--main">
       <Header />
-      <main className={cn(`page__main page__main--index`, {'page__main--index-empty': !cityOffers.length})}>
+      <main className={cn(`page__main page__main--index`, {'page__main--index-empty': !offers.length})}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -25,8 +25,8 @@ const Main = (props) => {
           </section>
         </div>
         <div className="cities">
-          {cityOffers.length ?
-            <MainOffers offers={cityOffers} activeCity={activeCity} />
+          {offers.length ?
+            <MainOffers offers={offers} activeCity={activeCity} />
             :
             <MainEmpty activeCity={activeCity} />
           }
@@ -37,14 +37,22 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  cityOffers: PropTypes.arrayOf(offerPropType),
+  offers: PropTypes.arrayOf(offerPropType),
   activeCity: PropTypes.oneOf(Object.values(Cities))
 };
 
-const mapStateToProps = (state) => ({
-  activeCity: state.activeCity,
-  cityOffers: sortOffers(state.cityOffers, state.activeSorting)
-});
+const filteredOffers = (offers, activeCity) => {
+  return offers.filter((offer) => offer.city.name === activeCity);
+};
+
+const mapStateToProps = (state) => {
+  let offers = filteredOffers(state.offers, state.activeCity);
+  offers = sortOffers(offers, state.activeSorting);
+  return {
+    activeCity: state.activeCity,
+    offers: offers,
+  };
+};
 
 export {Main};
 export default connect(mapStateToProps)(Main);

@@ -98,8 +98,9 @@ const OfferScreen = (props) => {
               </section>
             </div>
           </div>
-          <section className="property__map map" />
-          <Map city={offer.city.name} points={offersNearby} />
+          <section className="property__map map">
+          <Map city={offer.city.name} points={offersNearby} className={`property__map`}/>
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
@@ -111,6 +112,7 @@ const OfferScreen = (props) => {
     </div>
   );
 };
+
 
 OfferScreen.propTypes = {
   offer: offerPropType,

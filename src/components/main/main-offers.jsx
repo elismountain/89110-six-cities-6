@@ -9,6 +9,7 @@ import {Cities, CardTypes} from '../../const';
 
 const MainOffers = (props) => {
   const {activeCity, offers} = props;
+  console.log(props);
   const [activeCard, setActiveCard] = useState(null);
 
   const handleCardMouseEnter = (selectedCard) => {
@@ -34,7 +35,7 @@ const MainOffers = (props) => {
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
-          <Map city={activeCity} points={offers} activePin={activeCard}/>
+          <Map city={activeCity} points={offers} activePin={activeCard} className={`cities__map`}/>
         </section>
       </div>
     </div>

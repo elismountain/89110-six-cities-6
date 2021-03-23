@@ -29,7 +29,7 @@ OfferScreenContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers
+  offers: state.offers,
 });
 
 export {OfferScreenContainer};

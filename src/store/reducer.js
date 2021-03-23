@@ -1,15 +1,17 @@
 import {ActionType} from './action';
-import {Cities, SortingTypes} from '../const';
+import {Cities, SortingTypes, FIRST_CITY} from '../const';
 import {getCityOffers, getFavoriteOffers} from '../utils';
 import offers from '../mocks/offers';
 
 const initialState = {
-  activeCity: Cities.PARIS,
+  activeCity: Cities[FIRST_CITY],
+  activePin: null,
   offers,
-  cityOffers: getCityOffers(offers, Cities.PARIS),
+  cityOffers: getCityOffers(offers),
   favoriteOffers: getFavoriteOffers(offers),
   activeSorting: SortingTypes.POPULAR
 };
+console.log(initialState);
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -17,13 +19,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         activeCity: action.payload,
-        cityOffers: getCityOffers(state.offers, state.activeCity)
+        cityOffers: getCityOffers(state.offers, state.activeCity),
       };
+
 
     case ActionType.ACTIVE_PIN:
       return {
         ...state,
         activePin: action.payload,
+
       };
 
     case ActionType.RESET_ACTIVE_PIN:

@@ -7,7 +7,7 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Map = (props) => {
-  const {city, points, activePin, className = `cities__map map`} = props;
+  const {city, points, activePin, className} = props;
   const coords = Coordinates[city];
   const [map, setMap] = useState(null);
 
@@ -41,6 +41,8 @@ const Map = (props) => {
 
   useEffect(() => {
     if (map && points.length) {
+
+
       points.map((point) => {
         const icon = point.id === activePin
           ? activeIcon
@@ -56,14 +58,14 @@ const Map = (props) => {
 
 
   return (
-    <section className={className} style={{height: `100%`}} ref={mapRef}></section>
+    <section className={`${className} map`} id="map" style={{height: `100%`}} ref={mapRef}></section>
   );
 };
 
 Map.propTypes = {
   city: PropTypes.oneOf(Object.values(Cities)),
   className: PropTypes.string,
-  activePin: PropTypes.number,
+  activePin: offerPropType,
   points: PropTypes.arrayOf(offerPropType)
 };
 
