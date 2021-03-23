@@ -11,7 +11,6 @@ const initialState = {
   favoriteOffers: getFavoriteOffers(offers),
   activeSorting: SortingTypes.POPULAR
 };
-console.log(initialState);
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

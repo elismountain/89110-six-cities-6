@@ -11,8 +11,8 @@ const PlaceCard = (props) => {
   const {offer, cardType, setActivePin, resetActivePin} = props;
 
   const onMouseEnterHandler = () => {
-    // getActiveCard(offer);
-    setActivePin(offer);
+    // getActiveCard(offer.id);
+    setActivePin(offer.id);
   };
 
   const classModifier = {
@@ -25,7 +25,7 @@ const PlaceCard = (props) => {
     <article className={`place-card ${classModifier[cardType]}place-card`} onMouseEnter={onMouseEnterHandler} onMouseLeave={resetActivePin}>
       <div className={`${classModifier[cardType]}__image-wrapper place-card__image-wrapper`}>
         <Link to={`/offer/${offer.id}`}>
-          <img className="place-card__image" src={offer.previewImage} width={cardType === CardTypes.FAVORITES ? `150` : `260`} height={cardType === CardTypes.FAVORITES ? `110` : `200`} alt="Place image"/>
+          <img className="place-card__image" src={offer.previewImage} width={cardType === CardTypes.FAVORITES ? `150` : `260`} height={cardType === CardTypes.FAVORITES ? `110` : `200`} alt="Place image" id={offer.id}/>
         </Link>
       </ div>
       <div className="place-card__info">

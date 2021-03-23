@@ -20,9 +20,9 @@ const PlacesList = (props) => {
         }
     )}>
 
-      {offers.map((offer) => (
+      {offers.map((offer, index) => (
         <PlaceCard
-          key={offer.id}
+          key={offer.id + index}
           offer={offer}
           cardType={cardType}
           onMouseEnter={onMouseEnter}

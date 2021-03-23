@@ -41,7 +41,7 @@ const Map = (props) => {
 
   useEffect(() => {
     if (map && points.length) {
-
+      map.removeLayer(points); // уточнить
 
       points.map((point) => {
         const icon = point.id === activePin
@@ -52,9 +52,11 @@ const Map = (props) => {
             [point.location.latitude, point.location.longitude],
             {icon},
         ).addTo(map);
+
+        map.panTo(new leaflet.LatLng(coords.latitude, coords.longitude));
       });
     }
-  }, [points, map, activePin]);
+  }, [points, map, activePin, coords]);
 
 
   return (
