@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PlaceCard from '../place-card/place-card';
 import PropTypes from 'prop-types';
 import {CardTypes} from '../../const';
@@ -7,7 +7,12 @@ import {offerPropType} from '../../prop-types';
 import cn from 'classnames';
 
 const PlacesList = (props) => {
-  const {offers, cardType = CardTypes.MAIN, onMouseEnter, onMouseLeave} = props;
+  const {offers, cardType = CardTypes.MAIN} = props;
+  const [activeCard, setActiveCard] = useState(1);
+
+  const getActiveCard = (id) => {
+    setActiveCard(id);
+  };
 
 
   return (
@@ -25,8 +30,7 @@ const PlacesList = (props) => {
           key={offer.id + index}
           offer={offer}
           cardType={cardType}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
+          getActiveCard={getActiveCard}
         />
       ))}
     </div>

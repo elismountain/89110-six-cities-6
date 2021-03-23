@@ -37,8 +37,8 @@ export default [
     isFavorite: false,
     isPremium: false,
     location: {
-      latitude: 50.935173123,
-      longitude: 6.953101676,
+      latitude: 50.93517388986,
+      longitude: 6.95310112334,
       zoom: 8
     },
     maxAdults: 4,
@@ -576,8 +576,8 @@ export default [
     isFavorite: false,
     isPremium: false,
     location: {
-      latitude: 50.935173546,
-      longitude: 6.953101234,
+      latitude: 50.975499,
+      longitude: 6.95738397,
       zoom: 8
     },
     maxAdults: 4,
@@ -625,8 +625,8 @@ export default [
     isFavorite: false,
     isPremium: false,
     location: {
-      latitude: 50.9351737467,
-      longitude: 6.9531010001,
+      latitude: 50.93564537,
+      longitude: 6.95328268,
       zoom: 8
     },
     maxAdults: 4,
@@ -821,8 +821,8 @@ export default [
     isFavorite: false,
     isPremium: false,
     location: {
-      latitude: 52.3809553943508,
-      longitude: 4.939309666406198,
+      latitude: 50.978009775,
+      longitude: 6.959007654,
       zoom: 8
     },
     maxAdults: 4,

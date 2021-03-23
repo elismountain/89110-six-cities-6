@@ -1,4 +1,4 @@
-export const Paths = {
+export const AppRoutes  = {
   MAIN: `/`,
   LOGIN: `/login`,
   FAVORITES: `/favorites`,
@@ -91,6 +91,21 @@ export const Coordinates = {
     longitude: 6.776314,
     zoom: 13
   }
+};
+
+export const APIRoutes = {
+  OFFERS: `/hotels`,
+  OFFER: `/hotels/:id`,
+  OFFERS_NEARBY: `/hotels/:hotel_id/nearby`,
+  FAVORITES: `/favorite`,
+  REVIEWS: `/comments/:hotel_id`,
+  LOGIN: `/login`,
+  LOGOUT: `/logout`
+};
+
+export const ResponseType = {
+  SUCCESS: `SUCCESS`,
+  ERROR: `ERROR`,
 };
 
 export const AuthorizationStatus = {
