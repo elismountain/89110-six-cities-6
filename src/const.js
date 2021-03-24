@@ -1,4 +1,4 @@
-export const AppRoutes  = {
+export const AppRoutes = {
   MAIN: `/`,
   LOGIN: `/login`,
   FAVORITES: `/favorites`,

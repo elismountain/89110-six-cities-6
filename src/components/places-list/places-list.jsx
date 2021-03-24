@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PlaceCard from '../place-card/place-card';
 import PropTypes from 'prop-types';
 import {CardTypes} from '../../const';
@@ -7,13 +7,7 @@ import {offerPropType} from '../../prop-types';
 import cn from 'classnames';
 
 const PlacesList = (props) => {
-  const {offers, cardType = CardTypes.MAIN} = props;
-  const [activeCard, setActiveCard] = useState(1);
-
-  const getActiveCard = (id) => {
-    setActiveCard(id);
-  };
-
+  const {offers, cardType = CardTypes.MAIN, onCardMouseEnter, onCardMouseLeave} = props;
 
   return (
     <div className={cn(
@@ -30,7 +24,8 @@ const PlacesList = (props) => {
           key={offer.id + index}
           offer={offer}
           cardType={cardType}
-          getActiveCard={getActiveCard}
+          onCardMouseEnter={onCardMouseEnter}
+          onCardMouseLeave={onCardMouseLeave}
         />
       ))}
     </div>
@@ -40,9 +35,8 @@ const PlacesList = (props) => {
 PlacesList.propTypes = {
   offers: PropTypes.arrayOf(offerPropType),
   cardType: PropTypes.oneOf(Object.values(CardTypes)),
-  onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func
-
+  onCardMouseEnter: PropTypes.func,
+  onCardMouseLeave: PropTypes.func
 };
 
 export default PlacesList;

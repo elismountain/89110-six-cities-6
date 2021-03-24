@@ -1,16 +1,17 @@
 import React from 'react';
-import {Redirect, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import {reviewPropType, offerPropType} from '../../prop-types';
-
 import {connect} from 'react-redux';
+import {AuthorizationStatus} from '../../const';
 
 import OfferScreen from './offer-screen';
 
 
 const OfferScreenContainer = (props) => {
-  const {offers, reviews} = props;
+  const {offers, reviews, authStatus} = props;
   const {id} = useParams();
 
   const offer = offers.find((item) => item.id === +id);
@@ -20,16 +21,18 @@ const OfferScreenContainer = (props) => {
     return <Redirect to="/" />;
   }
 
-  return <OfferScreen offer={offer} reviews={reviews} offersNearby={offersNearby} isAuthorized={true} />;
+  return <OfferScreen offer={offer} reviews={reviews} offersNearby={offersNearby} isAuthorized={authStatus === AuthorizationStatus.AUTH} />;
 };
 
 OfferScreenContainer.propTypes = {
   offers: PropTypes.arrayOf(offerPropType),
-  reviews: PropTypes.arrayOf(reviewPropType)
+  reviews: PropTypes.arrayOf(reviewPropType),
+  authStatus: PropTypes.oneOf(Object.values(AuthorizationStatus))
 };
 
 const mapStateToProps = (state) => ({
   offers: state.offers,
+  authStatus: state.authorizationStatus,
 });
 
 export {OfferScreenContainer};

@@ -1,18 +1,36 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useHistory, useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../header/header';
 import CitiesList from '../cities-list/cities-list';
 import {offerPropType} from '../../prop-types';
 import MainOffers from '../main/main-offers';
+import {ActionCreator} from '../../store/action';
 
-import {Cities} from '../../const';
+import {Cities, AppRoutes} from '../../const';
 import {sortOffers} from '../../sorting';
 import MainEmpty from '../main/main-empty';
 import cn from 'classnames';
 
 const Main = (props) => {
-  const {offers, activeCity} = props;
+  const {activeCity, offers, onChangeCity} = props;
+
+  const history = useHistory();
+  const location = useLocation();
+  const cityParam = new URLSearchParams(location.search).get(`city`);
+
+  useEffect(() => {
+    if (!cityParam) {
+      history.push({
+        pathname: AppRoutes.MAIN,
+        search: `?city=${activeCity}`
+      });
+    }
+    if (cityParam && cityParam !== activeCity) {
+      onChangeCity(cityParam);
+    }
+  }, [cityParam]);
 
   return (
     <div className="page page--gray page--main">
@@ -38,7 +56,8 @@ const Main = (props) => {
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(offerPropType),
-  activeCity: PropTypes.oneOf(Object.values(Cities))
+  activeCity: PropTypes.oneOf(Object.values(Cities)),
+  onChangeCity: PropTypes.func.isRequired
 };
 
 const filteredOffers = (offers, activeCity) => {
@@ -54,5 +73,11 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  onChangeCity(city) {
+    dispatch(ActionCreator.changeCity(city));
+  },
+});
+
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

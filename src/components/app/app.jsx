@@ -8,23 +8,23 @@ import Favorites from "../favorites/favorites";
 import OfferScreenContainer from '../offer-screen/offer-screen-container';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-import {Paths} from '../../const';
+import {AppRoutes} from '../../const';
 
 const App = (props) => {
   const {reviews} = props;
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={Paths.MAIN}>
+        <Route exact path={AppRoutes.MAIN}>
           <Main />
         </Route>
-        <Route exact path={Paths.LOGIN}>
+        <Route exact path={AppRoutes.LOGIN}>
           <Login />
         </Route>
-        <Route exact path={Paths.FAVORITES}>
+        <Route exact path={AppRoutes.FAVORITES}>
           <Favorites />
         </Route>
-        <Route exact path={Paths.OFFER}>
+        <Route exact path={AppRoutes.OFFER}>
           <OfferScreenContainer reviews={reviews} />
         </Route>
         <Route>
