@@ -41,17 +41,22 @@ const Map = (props) => {
 
   useEffect(() => {
     if (map && points.length) {
-      map.removeLayer(points); // уточнить
+      const markers = [];
 
       points.map((point) => {
         const icon = point.id === activePin
           ? activeIcon
           : defaultIcon;
 
-        leaflet.marker(
-            [point.location.latitude, point.location.longitude],
-            {icon},
-        ).addTo(map);
+        markers.push(
+            leaflet
+            .marker([point.location.latitude, point.location.longitude], {icon})
+            .addTo(map)
+        );
+        // leaflet.marker(
+        //     [point.location.latitude, point.location.longitude],
+        //     {icon},
+        // ).addTo(map);
 
         map.panTo(new leaflet.LatLng(coords.latitude, coords.longitude));
       });

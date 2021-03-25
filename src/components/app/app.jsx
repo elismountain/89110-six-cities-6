@@ -6,7 +6,7 @@ import Login from "../login/login";
 import PageNotFound from "../page-not-found/page-not-found";
 import Favorites from "../favorites/favorites";
 import OfferScreenContainer from '../offer-screen/offer-screen-container';
-import {Router as BrowserRouter, Route, Switch} from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 import PrivateRoute from '../private-route/private-route';
 import browserHistory from '../../browser-history';
 
@@ -15,7 +15,7 @@ import {AppRoutes} from '../../const';
 const App = (props) => {
   const {reviews} = props;
   return (
-    <BrowserRouter history={browserHistory}>
+    <Router history={browserHistory}>
       <Switch>
         <Route exact path={AppRoutes.MAIN}>
           <Main />
@@ -31,7 +31,7 @@ const App = (props) => {
           <PageNotFound />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 

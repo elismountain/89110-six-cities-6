@@ -12,8 +12,8 @@ export const adaptOfferData = (data) => {
     previewImage: data[`preview_image`]
   };
 
-  delete offer.host[`avatar_url`];
-  delete offer.host[`is_pro`];
+  // delete offer.host[`avatar_url`];
+  // delete offer.host[`is_pro`];
   delete offer[`is_favorite`];
   delete offer[`is_premium`];
   delete offer[`max_adults`];
@@ -38,7 +38,7 @@ export const adaptReviewData = (data) => {
     }
   };
 
-  delete review.user[`avatar_url`];
+  // delete review.user[`avatar_url`];
   delete review.user[`is_pro`];
 
   return review;

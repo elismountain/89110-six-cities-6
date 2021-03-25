@@ -5,15 +5,11 @@ import {Cities, SortingTypes, FIRST_CITY, AuthorizationStatus} from '../const';
 import {adaptOffersData} from '../services/adapter';
 
 const initialState = {
-
   offers: [],
-  activeCity: Cities[FIRST_CITY],
-  // cityOffers: getCityOffers(offers),
-  // favoriteOffers: getFavoriteOffers(offers),
-  // activePin: null,
+  activeCity: Cities.PARIS,
   activeSorting: SortingTypes.POPULAR,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  isOffersDataLoaded: false
+  isOffersDataLoaded: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -28,24 +24,22 @@ const reducer = (state = initialState, action) => {
         ...state,
         activeSorting: action.payload
       };
-    case ActionType.REQUIRED_AUTHORIZATION:
-      return {
-        ...state,
-        authorizationStatus: action.payload
-      };
     case ActionType.LOAD_OFFERS:
       return {
         ...state,
         offers: adaptOffersData(action.payload),
         isOffersDataLoaded: true
       };
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return {
+        ...state,
+        authorizationStatus: action.payload
+      };
     default:
       return state;
   }
 };
-//
-//
-//
+
 // const reducer = (state = initialState, action) => {
 //   switch (action.type) {
 //     case ActionType.CHANGE_CITY:
