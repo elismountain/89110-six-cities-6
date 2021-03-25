@@ -3,6 +3,7 @@ export const ActionType = {
   SET_CITY_OFFERS: `common/setCityOffers`,
   CHANGE_SORTING: `common/changeSorting`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
+  REDIRECT_TO_ROUTE: `common/redirectToRoute`,
   LOAD_OFFERS: `data/loadOffers`,
   ACTIVE_PIN: `ACTIVE_PIN`,
   RESET_ACTIVE_PIN: `RESET_ACTIVE_PIN`
@@ -28,11 +29,16 @@ export const ActionCreator = {
     type: ActionType.LOAD_OFFERS,
     payload: offers
   }),
-  changeActivePin: (activePin) => ({
-    type: ActionType.ACTIVE_PIN,
-    payload: activePin,
-  }),
-  resetActivePin: () => ({
-    type: ActionType.RESET_ACTIVE_PIN,
-  }),
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url
+}),
+  // changeActivePin: (activePin) => ({
+  //   type: ActionType.ACTIVE_PIN,
+  //   payload: activePin,
+  // }),
+  // resetActivePin: () => ({
+  //   type: ActionType.RESET_ACTIVE_PIN,
+  // }),
+
 };
