@@ -1,5 +1,5 @@
 import {ActionType} from './action';
-import {Cities, SortingTypes, FIRST_CITY, AuthorizationStatus} from '../const';
+import {Cities, SortingTypes, AuthorizationStatus} from '../const';
 // import {getCityOffers, getFavoriteOffers} from '../utils';
 // import {getCityOffers} from '../utils';
 import {adaptOffersData} from '../services/adapter';
