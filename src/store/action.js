@@ -5,8 +5,10 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
   REDIRECT_TO_ROUTE: `common/redirectToRoute`,
   LOAD_OFFERS: `data/loadOffers`,
-  ACTIVE_PIN: `ACTIVE_PIN`,
-  RESET_ACTIVE_PIN: `RESET_ACTIVE_PIN`
+  SET_AUTH_INFO: `user/login`,
+  CLEAR_AUTH_INFO: `user/logout`,
+  // ACTIVE_PIN: `ACTIVE_PIN`,
+  // RESET_ACTIVE_PIN: `RESET_ACTIVE_PIN`
 };
 
 export const ActionCreator = {
@@ -32,7 +34,16 @@ export const ActionCreator = {
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url
-}),
+  }),
+
+  setAuthInfo: (info) => ({
+    type: ActionType.SET_AUTH_INFO,
+    payload: info
+  }),
+
+  clearAuthInfo: () => ({
+    type: ActionType.CLEAR_AUTH_INFO
+  }),
   // changeActivePin: (activePin) => ({
   //   type: ActionType.ACTIVE_PIN,
   //   payload: activePin,

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Header from '../header/header';
-import SignInForm from '../sign-in-form/sign-in-form';
+import SignInForm from '../sign-in/sign-in-form';
 
 const SignIn = () => {
   return (
