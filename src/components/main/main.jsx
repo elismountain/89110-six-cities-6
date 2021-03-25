@@ -15,6 +15,7 @@ import cn from 'classnames';
 
 const Main = (props) => {
   const {activeCity, offers, onChangeCity} = props;
+  console.log(props);
 
   const history = useHistory();
   const location = useLocation();
@@ -69,7 +70,7 @@ const mapStateToProps = (state) => {
   offers = sortOffers(offers, state.activeSorting);
   return {
     activeCity: state.activeCity,
-    offers: offers,
+    offers,
   };
 };
 
