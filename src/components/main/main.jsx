@@ -16,8 +16,6 @@ import cn from 'classnames';
 const Main = (props) => {
   // const {activeCity, offers, onChangeCity} = props;
   const {activeCity, cityOffers, onChangeCity} = props;
-  console.log(props);
-
 
   const history = useHistory();
   const location = useLocation();
