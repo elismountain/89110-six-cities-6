@@ -7,8 +7,6 @@ export const ActionType = {
   LOAD_OFFERS: `data/loadOffers`,
   SET_AUTH_INFO: `user/login`,
   CLEAR_AUTH_INFO: `user/logout`,
-  // ACTIVE_PIN: `ACTIVE_PIN`,
-  // RESET_ACTIVE_PIN: `RESET_ACTIVE_PIN`
 };
 
 export const ActionCreator = {
@@ -43,13 +41,5 @@ export const ActionCreator = {
 
   clearAuthInfo: () => ({
     type: ActionType.CLEAR_AUTH_INFO
-  }),
-  // changeActivePin: (activePin) => ({
-  //   type: ActionType.ACTIVE_PIN,
-  //   payload: activePin,
-  // }),
-  // resetActivePin: () => ({
-  //   type: ActionType.RESET_ACTIVE_PIN,
-  // }),
-
+  })
 };

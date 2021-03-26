@@ -9,12 +9,15 @@ import MainOffers from '../main/main-offers';
 import {ActionCreator} from '../../store/action';
 
 import {Cities, AppRoutes} from '../../const';
-import {sortOffers} from '../../sorting';
+import {getActiveCity, getSortedCityOffers} from '../../store/main/selector';
 import MainEmpty from '../main/main-empty';
 import cn from 'classnames';
 
 const Main = (props) => {
-  const {activeCity, offers, onChangeCity} = props;
+  // const {activeCity, offers, onChangeCity} = props;
+  const {activeCity, cityOffers, onChangeCity} = props;
+  console.log(props);
+
 
   const history = useHistory();
   const location = useLocation();
@@ -35,7 +38,7 @@ const Main = (props) => {
   return (
     <div className="page page--gray page--main">
       <Header />
-      <main className={cn(`page__main page__main--index`, {'page__main--index-empty': !offers.length})}>
+      <main className={cn(`page__main page__main--index`, {'page__main--index-empty': !cityOffers.length})}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -43,8 +46,8 @@ const Main = (props) => {
           </section>
         </div>
         <div className="cities">
-          {offers.length ?
-            <MainOffers offers={offers} activeCity={activeCity} />
+          {cityOffers.length ?
+            <MainOffers offers={cityOffers} activeCity={activeCity} />
             :
             <MainEmpty activeCity={activeCity} />
           }
@@ -55,23 +58,28 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(offerPropType),
+  cityOffers: PropTypes.arrayOf(offerPropType),
   activeCity: PropTypes.oneOf(Object.values(Cities)),
   onChangeCity: PropTypes.func.isRequired
 };
 
-const filteredOffers = (offers, activeCity) => {
-  return offers.filter((offer) => offer.city.name === activeCity);
-};
+// const filteredOffers = (offers, activeCity) => {
+//   return offers.filter((offer) => offer.city.name === activeCity);
+// };
 
-const mapStateToProps = (state) => {
-  let offers = filteredOffers(state.offers, state.activeCity);
-  offers = sortOffers(offers, state.activeSorting);
-  return {
-    activeCity: state.activeCity,
-    offers,
-  };
-};
+// const mapStateToProps = (state) => {
+//   let offers = filteredOffers(state.offers, state.activeCity);
+//   offers = sortOffers(offers, state.activeSorting);
+//   return {
+//     activeCity: state.activeCity,
+//     offers,
+//   };
+// };
+
+const mapStateToProps = (state) => ({
+  activeCity: getActiveCity(state),
+  cityOffers: getSortedCityOffers(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCity(city) {

@@ -6,7 +6,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {ActionCreator} from './store/action';
 import {checkAuth} from './store/api-actions';
 
-import {reducer} from './store/reducer';
+import {reducer} from './store/main/reducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
