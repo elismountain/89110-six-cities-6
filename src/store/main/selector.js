@@ -2,7 +2,7 @@ import {SortingTypes} from '../../const';
 import {NameSpace} from '../root-reducer';
 import {createSelector} from 'reselect';
 
-const getByProp = (state) => (prop) => state[NameSpace.MAIN][prop]; // тут валится, дальше не могу додуматься
+const getByProp = (state) => (prop) => state[NameSpace.MAIN][prop];
 
 
 export const getOffers = (state) => getByProp(state)(`offers`);

@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import {reducer as mainReducer} from './main/reducer';
-// import {reducer as userReducer} from './user/reducer';
-// import {reducer as offerReducer} from './offer/reducer';
-// import {reducer as favoritesReducer} from './favorites/reducer';
+import {reducer as userReducer} from './user/reducer';
+import {reducer as offerReducer} from './offer/reducer';
+import {reducer as favoritesReducer} from './favorites/reducer';
 
 export const NameSpace = {
   USER: `USER`,
@@ -12,10 +12,10 @@ export const NameSpace = {
 };
 
 const rootReducer = combineReducers({
-  // [NameSpace.USER]: userReducer,
+  [NameSpace.USER]: userReducer,
   [NameSpace.MAIN]: mainReducer,
-  // [NameSpace.OFFER]: offerReducer,
-  // [NameSpace.FAVORITES]: favoritesReducer
+  [NameSpace.OFFER]: offerReducer,
+  [NameSpace.FAVORITES]: favoritesReducer
 });
 
 export {rootReducer};

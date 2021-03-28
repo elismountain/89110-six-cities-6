@@ -5,8 +5,6 @@ export const AppRoutes = {
   OFFER: `/offer/:id`
 };
 
-export const FIRST_CITY = 0;
-
 export const Cities = {
   PARIS: `Paris`,
   COLOGNE: `Cologne`,

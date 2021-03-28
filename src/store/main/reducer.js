@@ -4,10 +4,9 @@ import {adaptOffersData} from '../../services/adapter';
 
 const initialState = {
   offers: [],
-  activeCity: Cities.PARIS,
+  activeCity: Cities[],
   activeSorting: SortingTypes.POPULAR,
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
-  isOffersDataLoaded: false,
+  isDataLoaded: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,22 +16,35 @@ const reducer = (state = initialState, action) => {
         ...state,
         activeCity: action.payload
       };
+
     case ActionType.CHANGE_SORTING:
       return {
         ...state,
         activeSorting: action.payload
       };
+
     case ActionType.LOAD_OFFERS:
       return {
         ...state,
         offers: adaptOffersData(action.payload),
-        isOffersDataLoaded: true
+        isDataLoaded: true
       };
-    case ActionType.REQUIRED_AUTHORIZATION:
-      return {
-        ...state,
-        authorizationStatus: action.payload
-      };
+      case ActionType.ADD_FAVORITE:
+      case ActionType.REMOVE_FAVORITE:
+        return {
+          ...state,
+          offers: state.offers.map((offer) => {
+            return {
+              ...offer,
+              isFavorite: offer.id === action.payload.id ? action.payload[`is_favorite`] : offer.isFavorite
+            };
+          }),
+        };
+      case ActionType.RESET_FAVORITES:
+        return {
+          ...state,
+          offers: state.offers.map((offer) => ({...offer, isFavorite: false}))
+        };
     default:
       return state;
   }
