@@ -1,22 +1,32 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-
-import {Cities} from '../../const';
+import {useHistory} from 'react-router-dom';
+import {AppRoutes, Cities} from '../../const';
 import cn from 'classnames';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
+import {getActiveCity} from '../../store/main/selector';
 
 const CitiesList = (props) => {
   const {activeCity, onChangeCity} = props;
+  const history = useHistory();
+
+  const handleCityClick = (evt) => {
+    evt.preventDefault();
+    onChangeCity(evt.target.innerText);
+    history.push({
+      pathname: AppRoutes.MAIN,
+      search: `?city=${evt.target.innerText}`
+    });
+  };
 
   return (
     <ul className="locations__list tabs__list">
       {Object.values(Cities).map((city) => (
-        <li className="locations__item" key={city} onClick={() => onChangeCity(city)}>
-          <Link className={cn(`locations__item-link tabs__item`, {'tabs__item--active': city === activeCity})} to="/">
+        <li className="locations__item" key={city}>
+          <a className={cn(`locations__item-link tabs__item`, {'tabs__item--active': city === activeCity})} href="#" onClick={handleCityClick}>
             <span>{city}</span>
-          </Link>
+          </a>
         </li>
       ))}
     </ul>
@@ -29,7 +39,7 @@ CitiesList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  activeCity: state.activeCity
+  activeCity: getActiveCity(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

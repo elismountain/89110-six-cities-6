@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {sendReview} from '../../store/api-actions';
@@ -18,7 +18,7 @@ const ReviewForm = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     onSubmit({id, review: reviewForm});
-    setReviewForm({...reviewForm, ...initialState})
+    setReviewForm({...reviewForm, ...initialState});
   };
 
   const handleFieldChange = (evt) => {
@@ -33,12 +33,12 @@ const ReviewForm = (props) => {
         {Ratings.map(({value, title}) => (
           <React.Fragment key={value}>
             <input className="form__rating-input visually-hidden"
-            name="rating"
-            value={value}
-            id={`${value}-stars`}
-            type="radio"
-            onChange={handleFieldChange}
-            checked={value === +reviewForm.rating}
+              name="rating"
+              value={value}
+              id={`${value}-stars`}
+              type="radio"
+              onChange={handleFieldChange}
+              checked={value === +reviewForm.rating}
             />
 
             <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={title}>
@@ -54,7 +54,7 @@ const ReviewForm = (props) => {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={reviewForm.comment}
         onChange={handleFieldChange}
-        />
+      />
 
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

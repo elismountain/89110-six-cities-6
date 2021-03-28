@@ -1,10 +1,11 @@
 import React, {useState, useEffect, createRef} from 'react';
 import PropTypes from 'prop-types';
-
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
+import {getActiveSorting} from '../../store/main/selector';
 import {SortingTypes} from '../../const';
 import cn from 'classnames';
+
 
 const OffersSorting = (props) => {
   const {activeSorting, onChangeSorting} = props;
@@ -45,8 +46,12 @@ const OffersSorting = (props) => {
         </svg>
       </span>
       <ul className={cn(`places__options places__options--custom`, {'places__options--opened': opened})}>
-        {Object.values(SortingTypes).map((item, i) => (
-          <li className={cn(`places__option`, {'places__option--active': activeSorting === item})} tabIndex="0" key={`sorting${i}`} onClick={handleItemClick}>{item}</li>
+        {Object.values(SortingTypes).map((item) => (
+          <li
+            className={cn(`places__option`, {'places__option--active': activeSorting === item})}
+            tabIndex="0"
+            key={item}
+            onClick={handleItemClick}>{item}</li>
         ))}
       </ul>
     </form>
@@ -59,7 +64,7 @@ OffersSorting.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  activeSorting: state.activeSorting
+  activeSorting: getActiveSorting(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import Header from '../header/header';
 import SignInForm from '../sign-in/sign-in-form';
 
-const SignIn = () => {
+const SignInScreen = () => {
   return (
     <div className="page page--gray page--login">
       <Header />
@@ -27,4 +27,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInScreen;

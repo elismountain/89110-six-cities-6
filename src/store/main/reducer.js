@@ -4,7 +4,7 @@ import {adaptOffersData} from '../../services/adapter';
 
 const initialState = {
   offers: [],
-  activeCity: Cities[],
+  activeCity: Cities.PARIS,
   activeSorting: SortingTypes.POPULAR,
   isDataLoaded: false,
 };
