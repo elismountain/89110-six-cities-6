@@ -53,10 +53,6 @@ const Map = (props) => {
             .marker([point.location.latitude, point.location.longitude], {icon})
             .addTo(map)
         );
-        // leaflet.marker(
-        //     [point.location.latitude, point.location.longitude],
-        //     {icon},
-        // ).addTo(map);
 
         map.panTo(new leaflet.LatLng(coords.latitude, coords.longitude));
       });

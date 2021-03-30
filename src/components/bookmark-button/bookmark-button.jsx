@@ -7,14 +7,9 @@ import {connect} from 'react-redux';
 import {changeOfferStatus} from '../../store/api-actions';
 import {getAuthorizationStatus} from '../../store/user/selector';
 
-import {AuthorizationStatus, AppRoutes} from '../../const';
+import {AuthorizationStatus, AppRoutes, FavoriteStatus} from '../../const';
 
 import cn from 'classnames';
-
-const Status = {
-  REMOVE: 0,
-  ADD: 1
-};
 
 const BookmarkButton = (props) => {
   const {authStatus, offer, classModifier = ``, width = `18`, height = `19`, onButtonClick} = props;
@@ -26,7 +21,7 @@ const BookmarkButton = (props) => {
     if (!isAuthorized) {
       history.push(AppRoutes.LOGIN);
     } else {
-      onButtonClick(offer.id, offer.isFavorite ? Status.REMOVE : Status.ADD);
+      onButtonClick(offer.id, offer.isFavorite ? FavoriteStatus.REMOVE : FavoriteStatus.ADD);
     }
   };
 

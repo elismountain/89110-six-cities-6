@@ -6,6 +6,7 @@ import cn from 'classnames';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 import {getActiveCity} from '../../store/main/selector';
+import {Link} from 'react-router-dom';
 
 const CitiesList = (props) => {
   const {activeCity, onChangeCity} = props;
@@ -23,10 +24,10 @@ const CitiesList = (props) => {
   return (
     <ul className="locations__list tabs__list">
       {Object.values(Cities).map((city) => (
-        <li className="locations__item" key={city}>
-          <a className={cn(`locations__item-link tabs__item`, {'tabs__item--active': city === activeCity})} href="#" onClick={handleCityClick}>
+        <li className="locations__item" key={city} onClick={handleCityClick}>
+          <Link className={cn(`locations__item-link tabs__item`, {'tabs__item--active': city === activeCity})} to="/">
             <span>{city}</span>
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
