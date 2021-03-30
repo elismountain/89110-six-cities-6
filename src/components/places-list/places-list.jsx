@@ -7,8 +7,7 @@ import {offerPropType} from '../../prop-types';
 import cn from 'classnames';
 
 const PlacesList = (props) => {
-  const {offers, cardType = CardTypes.MAIN, onMouseEnter, onMouseLeave} = props;
-
+  const {offers, cardType = CardTypes.MAIN, onCardMouseEnter, onCardMouseLeave} = props;
 
   return (
     <div className={cn(
@@ -20,13 +19,13 @@ const PlacesList = (props) => {
         }
     )}>
 
-      {offers.map((offer) => (
+      {offers.map((offer, index) => (
         <PlaceCard
-          key={offer.id}
+          key={offer.id + index}
           offer={offer}
           cardType={cardType}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
+          onCardMouseEnter={onCardMouseEnter}
+          onCardMouseLeave={onCardMouseLeave}
         />
       ))}
     </div>
@@ -36,9 +35,8 @@ const PlacesList = (props) => {
 PlacesList.propTypes = {
   offers: PropTypes.arrayOf(offerPropType),
   cardType: PropTypes.oneOf(Object.values(CardTypes)),
-  onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func
-
+  onCardMouseEnter: PropTypes.func,
+  onCardMouseLeave: PropTypes.func
 };
 
 export default PlacesList;

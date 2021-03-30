@@ -47,3 +47,9 @@ export const reviewPropType = PropTypes.shape({
     name: PropTypes.string.isRequired
   })
 });
+
+export const authInfoPropType = PropTypes.shape({
+  id: PropTypes.number,
+  email: PropTypes.string,
+  name: PropTypes.string
+});

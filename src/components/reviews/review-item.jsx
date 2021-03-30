@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import {reviewPropType} from '../../prop-types';
 import {getStarsWidth} from '../../utils';
 

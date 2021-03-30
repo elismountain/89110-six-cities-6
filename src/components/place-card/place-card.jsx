@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {offerPropType} from '../../prop-types';
 import {CardTypes, OfferTypes} from '../../const';
+import BookmarkButton from '../bookmark-button/bookmark-button';
+import {getStarsWidth} from '../../utils';
+import cn from 'classnames';
 
 const PlaceCard = (props) => {
-  const {offer, cardType, onMouseEnter, onMouseLeave} = props;
-  const handleMouseEnter = () => {
-    onMouseEnter(offer);
+  const {offer, cardType, onCardMouseEnter = () => {}, onCardMouseLeave = () => {}} = props;
+
+  const handleCardMouseEnter = () => {
+    onCardMouseEnter(offer);
   };
 
   const classModifier = {
@@ -17,32 +21,31 @@ const PlaceCard = (props) => {
   };
 
   return (
-    <article className={`place-card ${classModifier[cardType]}place-card`} onMouseEnter={handleMouseEnter} onMouseLeave={onMouseLeave}>
+    <article className={`place-card ${classModifier[cardType]}place-card`} onMouseEnter={handleCardMouseEnter} onMouseLeave={onCardMouseLeave}>
+
+      {offer.isPremium &&
+      <div className="place-card__mark">
+        <span>Premium</span>
+      </div>
+      }
       <div className={`${classModifier[cardType]}__image-wrapper place-card__image-wrapper`}>
         <Link to={`/offer/${offer.id}`}>
-          <img className="place-card__image" src={offer.previewImage} width={cardType === CardTypes.FAVORITES ? `150` : `260`} height={cardType === CardTypes.FAVORITES ? `110` : `200`} alt="Place image" />
+          <img className="place-card__image" src={offer.previewImage} width={cardType === CardTypes.FAVORITES ? `150` : `260`} height={cardType === CardTypes.FAVORITES ? `110` : `200`} alt="Place image" id={offer.id}/>
         </Link>
       </ div>
-      <div className="place-card__info">
+
+      <div className={cn(`place-card__info`, {'favorites__card-info': cardType === CardTypes.FAVORITES})}>
+
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${offer.isFavorite ? `place-card__bookmark-button--active` : ``}`} type="button">
-            <svg
-              className="place-card__bookmark-icon"
-              width={18}
-              height={19}
-            >
-              <use xlinkHref="#icon-bookmark"/>
-            </svg>
-            <span className="visually-hidden">In bookmarks</span>
-          </button>
+          <BookmarkButton classModifier={`place-card__`} offer={offer} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `80%`}}/>
+            <span style={{width: `${getStarsWidth(offer.rating)}`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -58,13 +61,8 @@ const PlaceCard = (props) => {
 PlaceCard.propTypes = {
   offer: offerPropType,
   cardType: PropTypes.oneOf(Object.values(CardTypes)),
-  onMouseEnter: PropTypes.func,
-  onMouseLeave: PropTypes.func
-
-};
-
-PlaceCard.defaultProps = {
-  onMouseEnter: () => {}
+  onCardMouseEnter: PropTypes.func,
+  onCardMouseLeave: PropTypes.func
 };
 
 export default PlaceCard;

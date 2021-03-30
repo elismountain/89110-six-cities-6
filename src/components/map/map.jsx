@@ -1,12 +1,14 @@
 import React, {useRef, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import {Cities, Coordinates} from '../../const';
 import {offerPropType} from '../../prop-types';
 
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Map = (props) => {
-  const {city, points, activeMarker, className = `cities__map map`} = props;
+  const {city, points, activePin, className} = props;
+  const coords = Coordinates[city];
   const [map, setMap] = useState(null);
 
   const mapRef = useRef();
@@ -24,8 +26,8 @@ const Map = (props) => {
 
   useEffect(() => {
     const nextMap = leaflet.map(mapRef.current, {
-      center: [city.latitude, city.longitude],
-      zoom: city.zoom
+      center: [coords.latitude, coords.longitude],
+      zoom: coords.zoom
     });
 
     leaflet
@@ -34,34 +36,43 @@ const Map = (props) => {
   }).addTo(nextMap);
     setMap(nextMap);
 
-  }, [points]);
+  }, []);
 
 
   useEffect(() => {
     if (map && points.length) {
+      const markers = [];
+
       points.map((point) => {
-        const icon = point.id === activeMarker
+        const icon = point.id === activePin
           ? activeIcon
           : defaultIcon;
 
-        leaflet.marker(
-            [point.location.latitude, point.location.longitude],
-            {icon},
-        ).addTo(map);
+        markers.push(
+            leaflet
+            .marker([point.location.latitude, point.location.longitude], {icon})
+            .addTo(map)
+        );
+        // leaflet.marker(
+        //     [point.location.latitude, point.location.longitude],
+        //     {icon},
+        // ).addTo(map);
+
+        map.panTo(new leaflet.LatLng(coords.latitude, coords.longitude));
       });
     }
-  }, [points, map, activeMarker]);
+  }, [points, map, activePin, coords]);
 
 
   return (
-    <section className={className} style={{height: `100%`}} ref={mapRef}></section>
+    <section className={`${className} map`} id="map" style={{height: `100%`}} ref={mapRef}></section>
   );
 };
 
 Map.propTypes = {
-  city: offerPropType,
+  city: PropTypes.oneOf(Object.values(Cities)),
   className: PropTypes.string,
-  activeMarker: PropTypes.string,
+  activePin: offerPropType,
   points: PropTypes.arrayOf(offerPropType)
 };
 

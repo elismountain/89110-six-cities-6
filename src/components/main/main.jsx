@@ -1,34 +1,41 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
+import {useHistory, useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../header/header';
-import PlacesList from '../places-list/places-list';
-import OffersSorting from '../offers-sorting/offers-sorting';
 import CitiesList from '../cities-list/cities-list';
 import {offerPropType} from '../../prop-types';
-import Map from '../map/map';
-import {Cities, CardTypes} from '../../const';
-import {sortOffers} from '../../sorting';
+import MainOffers from '../main/main-offers';
+import {ActionCreator} from '../../store/action';
+
+import {Cities, AppRoutes} from '../../const';
+import {getActiveCity, getSortedCityOffers} from '../../store/main/selector';
 import MainEmpty from '../main/main-empty';
 import cn from 'classnames';
 
 const Main = (props) => {
-  const {cityOffers, activeCity} = props;
-  const cityLocation = cityOffers.length ? cityOffers[0].city.location : {};
+  const {activeCity, cityOffers, onChangeCity} = props;
 
-  const [activeCard, setActiveCard] = useState(null);
+  const history = useHistory();
+  const location = useLocation();
+  const cityParam = new URLSearchParams(location.search).get(`city`);
 
-  const handleCardMouseEnter = (selectedCard) => {
-    setActiveCard(selectedCard);
-  };
-
-  const handleCardMouseLeave = () => {
-    setActiveCard(null);
-  };
+  useEffect(() => {
+    if (!cityParam) {
+      history.push({
+        pathname: AppRoutes.MAIN,
+        search: `?city=${activeCity}`
+      });
+    }
+    if (cityParam && cityParam !== activeCity) {
+      onChangeCity(cityParam);
+    }
+  }, [cityParam]);
 
   return (
     <div className="page page--gray page--main">
       <Header />
+
       <main className={cn(`page__main page__main--index`, {'page__main--index-empty': !cityOffers.length})}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -37,24 +44,8 @@ const Main = (props) => {
           </section>
         </div>
         <div className="cities">
-          {cityOffers.length
-            ? <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{cityOffers.length} places to stay in {activeCity}</b>
-                <OffersSorting/>
-                <PlacesList
-                  offers={cityOffers}
-                  cardType={CardTypes.MAIN}
-                  onCardMouseEnter={handleCardMouseEnter}
-                  onCardMouseLeave={handleCardMouseLeave}/>
-              </section>
-              <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map city={cityLocation} points={cityOffers} activeMarker={activeCard}/>
-                </ section>
-              </div>
-            </div>
+          {cityOffers.length ?
+            <MainOffers offers={cityOffers} activeCity={activeCity} />
             :
             <MainEmpty activeCity={activeCity} />
           }
@@ -66,13 +57,20 @@ const Main = (props) => {
 
 Main.propTypes = {
   cityOffers: PropTypes.arrayOf(offerPropType),
-  activeCity: PropTypes.oneOf(Object.values(Cities))
+  activeCity: PropTypes.oneOf(Object.values(Cities)),
+  onChangeCity: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  activeCity: state.activeCity,
-  cityOffers: sortOffers(state.cityOffers, state.activeSorting)
+  activeCity: getActiveCity(state),
+  cityOffers: getSortedCityOffers(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onChangeCity(city) {
+    dispatch(ActionCreator.changeCity(city));
+  },
 });
 
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
