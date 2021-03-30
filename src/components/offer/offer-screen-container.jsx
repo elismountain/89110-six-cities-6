@@ -13,7 +13,7 @@ import {getCurrentOffer, getNearbyOffers, getNotFoundStatus, getReviews} from '.
 import OfferScreen from './offer-screen';
 import {AuthorizationStatus} from '../../const';
 import Spinner from '../spinner/spinner';
-import NotFoundScreen from '../page-not-found/page-not-found';
+import PageNotFound from '../page-not-found/page-not-found';
 
 
 const OfferScreenContainer = (props) => {
