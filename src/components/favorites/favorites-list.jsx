@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 import PlacesList from '../places-list/places-list';
 import {CardTypes} from '../../const';
 
-
 const FavoritesList = (props) => {
   const {offers} = props;
 

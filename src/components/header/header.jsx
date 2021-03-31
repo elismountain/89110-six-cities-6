@@ -44,7 +44,7 @@ const Header = (props) => {
               {isAuthorized &&
                 <li className="header__nav-item" style={{marginLeft: `10px`}}>
                   <button className="button" onClick={handleLogoutClick}>
-                    <Icon width={20} height={20} />
+                    <Icon size={20} />
                   </button>
                 </li>
               }
