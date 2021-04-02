@@ -81,6 +81,7 @@ export const ActionCreator = {
   resetFavorites: () => ({
     type: ActionType.RESET_FAVORITES,
   }),
+
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url

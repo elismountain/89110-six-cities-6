@@ -1,6 +1,5 @@
 import {ActionCreator} from './action';
 import {AppRoutes, APIRoutes, AuthorizationStatus} from '../const';
-// import {ActionCreator as middlewareActionCreator} from './middlewares/action';
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoutes.LOGIN)
