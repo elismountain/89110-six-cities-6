@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OfferGallery should render correctly 1`] = `
+<div>
+  <div
+    class="property__gallery-container container"
+  >
+    <div
+      class="property__gallery"
+    >
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/20.jpg"
+        />
+      </div>
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/19.jpg"
+        />
+      </div>
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/17.jpg"
+        />
+      </div>
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/11.jpg"
+        />
+      </div>
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/3.jpg"
+        />
+      </div>
+      <div
+        class="property__image-wrapper"
+      >
+        <img
+          alt="Photo studio"
+          class="property__image"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/18.jpg"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

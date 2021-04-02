@@ -13,6 +13,7 @@ export const ActionType = {
   REMOVE_FAVORITE: `data/removeFavorite`,
   LOAD_FAVORITES: `data/loadFavorites`,
   RESET_FAVORITES: `data/resetFavorites`,
+  REDIRECT_TO_ROUTE: `middlewares/redirectToRoute`
 };
 
 export const ActionCreator = {
@@ -79,5 +80,9 @@ export const ActionCreator = {
 
   resetFavorites: () => ({
     type: ActionType.RESET_FAVORITES,
+  }),
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url
   })
 };

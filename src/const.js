@@ -96,11 +96,12 @@ export const Coordinates = {
 export const APIRoutes = {
   OFFERS: `/hotels`,
   OFFER: `/hotels/:id`,
-  OFFERS_NEARBY: `/hotels/:hotel_id/nearby`,
+  OFFERS_NEARBY: `/hotels/:id/nearby`,
   FAVORITES: `/favorite`,
-  REVIEWS: `/comments/:hotel_id`,
+  REVIEWS: `/comments/:id`,
   LOGIN: `/login`,
-  LOGOUT: `/logout`
+  LOGOUT: `/logout`,
+  CHANGE_FAVORITE: `/favorite/:id/:status`
 };
 
 export const ResponseType = {

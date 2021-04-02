@@ -8,7 +8,7 @@ import ReviewForm from "../reviews/review-form";
 import ReviewsList from "../reviews/reviews-list";
 import Map from "../map/map";
 import {CardTypes} from '../../const';
-import OfferGallery from '../offer/offer-gallery';
+import OfferGallery from '../offer-gallery/offer-gallery';
 import OfferDetails from '../offer/offer-details';
 
 const OfferScreen = (props) => {
