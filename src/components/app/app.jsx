@@ -7,10 +7,9 @@ import PageNotFound from '../page-not-found/page-not-found';
 import Favorites from '../favorites/favorites';
 import SignInScreen from '../sign-in/sign-in-screen';
 import OfferScreenContainer from '../offer/offer-screen-container';
-import {Router, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route';
 import Spinner from '../spinner/spinner';
-import browserHistory from '../../browser-history';
 import {getDataLoadedStatus} from '../../store/main/selector';
 
 import {AppRoutes} from '../../const';
@@ -28,23 +27,21 @@ const App = (props) => {
     !isDataLoaded ?
       <Spinner/>
       :
-      <Router history={browserHistory}>
-        <Switch>
-          <Route exact path={AppRoutes.MAIN}>
-            <Main />
-          </Route>
-          <Route exact path={AppRoutes.LOGIN}>
-            <SignInScreen/>
-          </Route>
-          <Route exact path={AppRoutes.OFFER}>
-            <OfferScreenContainer/>
-          </Route>
-          <PrivateRoute exact path={AppRoutes.FAVORITES} render={() => <Favorites />} />
-          <Route>
-            <PageNotFound />
-          </Route>
-        </Switch>
-      </Router>
+      <Switch>
+        <Route exact path={AppRoutes.MAIN}>
+          <Main/>
+        </Route>
+        <Route exact path={AppRoutes.LOGIN}>
+          <SignInScreen/>
+        </Route>
+        <Route exact path={AppRoutes.OFFER}>
+          <OfferScreenContainer/>
+        </Route>
+        <PrivateRoute exact path={AppRoutes.FAVORITES} render={() => <Favorites/>}/>
+        <Route>
+          <PageNotFound/>
+        </Route>
+      </Switch>
   );
 };
 

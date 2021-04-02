@@ -1,10 +1,7 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
 import {offerPropType} from '../../prop-types';
-
 import BookmarkButton from '../bookmark-button/bookmark-button';
-
 import {OfferTypes} from '../../const';
 import {getStarsWidth} from '../../utils';
 
