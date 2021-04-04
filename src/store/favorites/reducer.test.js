@@ -1,6 +1,6 @@
 import {reducer} from './reducer';
 import {ActionType, ActionCreator} from '../action';
-import {favOfferRaw, favOfferAdapted, favOffersRaw} from './test-mocks';
+import {favOfferRaw, favOffersRaw} from './test-mocks';
 import {APIRoutes} from '../../const';
 
 import MockAdapter from 'axios-mock-adapter';
@@ -15,24 +15,6 @@ describe(`Reducers work correctly`, () => {
       .toEqual({
         offers: [],
         isDataLoaded: false
-      });
-  });
-
-  it(`Reducer should add favorite offer`, () => {
-    const state = {
-      offers: [],
-      isDataLoaded: true
-    };
-
-    const addFavoriteAction = {
-      type: ActionType.ADD_FAVORITE,
-      payload: favOfferRaw,
-    };
-
-    expect(reducer(state, addFavoriteAction))
-      .toEqual({
-        offers: [favOfferAdapted],
-        isDataLoaded: true
       });
   });
 

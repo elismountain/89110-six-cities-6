@@ -1,7 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import {reviewPropType, offerPropType} from '../../prop-types';
-import {useLocation} from 'react-router-dom';
 import Header from "../header/header";
 import PlacesList from "../places-list/places-list";
 import ReviewForm from "../reviews/review-form";
@@ -13,11 +12,6 @@ import OfferDetails from '../offer/offer-details';
 
 const OfferScreen = (props) => {
   const {offer, reviews, offersNearby, isAuthorized} = props;
-  const {pathname} = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
 
   return (
     <div className="page">
