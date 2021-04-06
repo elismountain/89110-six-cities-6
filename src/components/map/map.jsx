@@ -11,6 +11,7 @@ import 'leaflet/dist/leaflet.css';
 
 const Map = (props) => {
   const {city, points, activePoint} = props;
+
   const coords = Coordinates[city];
   const mapRef = useRef();
 
